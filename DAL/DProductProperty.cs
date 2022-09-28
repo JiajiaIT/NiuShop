@@ -10,15 +10,16 @@ namespace DAL
 {
     class DProductProperty : IDAL.IProductProperty
     {
-        NiuShopDBEntities db = new NiuShopDBEntities();
         public void Add(ProductProperty entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             db.ProductProperty.Add(entity);
             db.SaveChanges();
         }
 
         public void Delete(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.ProductProperty.Where(p => p.PropertyID == id).First();
             db.ProductProperty.Remove(data);
             db.SaveChanges();
@@ -26,18 +27,21 @@ namespace DAL
 
         public ProductProperty FindByID(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.ProductProperty.Where(p => p.PropertyID == id).First();
             return data;
         }
 
         public List<ProductProperty> GetAll()
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.ProductProperty.ToList();
             return data;
         }
 
         public void Update(int id, ProductProperty entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.ProductProperty.Where(p => p.PropertyID == id).First();
             data.PropertyName = entity.PropertyName;
             data.IMG = entity.IMG;

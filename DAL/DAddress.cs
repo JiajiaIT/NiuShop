@@ -10,15 +10,16 @@ namespace DAL
 {
     public class DAddress : IDAL.IAddress
     {
-        NiuShopDBEntities db = new NiuShopDBEntities();
         public void Add(Address entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             db.Address.Add(entity);
             db.SaveChanges();
         }
 
         public void Delete(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Address.Where(a => a.AddressID == id).First();
             db.Address.Remove(data);
             db.SaveChanges();
@@ -26,18 +27,21 @@ namespace DAL
 
         public Address FindByID(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Address.Where(a => a.AddressID == id).First();
             return data;
         }
 
         public List<Address> GetAll()
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Address.ToList();
             return data;
         }
 
         public void Update(int id, Address entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Address.Where(a => a.AddressID == id).First();
             data.AddressInfo = entity.AddressInfo;
             data.Postcode = entity.Postcode;

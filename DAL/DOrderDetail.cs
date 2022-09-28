@@ -10,15 +10,16 @@ namespace DAL
 {
     public class DOrderDetail : IDAL.IOrderDetail
     {
-        NiuShopDBEntities db = new NiuShopDBEntities();
         public void Add(OrderDetail entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             db.OrderDetail.Add(entity);
             db.SaveChanges();
         }
 
         public void Delete(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.OrderDetail.Where(o => o.DetailID == id).First();
             db.OrderDetail.Remove(data);
             db.SaveChanges();
@@ -26,18 +27,21 @@ namespace DAL
 
         public OrderDetail FindByID(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.OrderDetail.Where(o => o.DetailID == id).First();
             return data;
         }
 
         public List<OrderDetail> GetAll()
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.OrderDetail.ToList();
             return data;
         }
 
         public void Update(int id, OrderDetail entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.OrderDetail.Where(o => o.DetailID == id).First();
             data.OrderID = entity.OrderID;
             data.ProperID = entity.ProperID;

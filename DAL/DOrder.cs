@@ -10,15 +10,16 @@ namespace DAL
 {
     public class DOrder : IDAL.IOrder
     {
-        NiuShopDBEntities db = new NiuShopDBEntities();
         public void Add(Order entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             db.Order.Add(entity);
             db.SaveChanges();
         }
 
         public void Delete(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Order.Where(o => o.OrderID == id).First();
             db.Order.Remove(data);
             db.SaveChanges();
@@ -26,17 +27,20 @@ namespace DAL
 
         public Order FindByID(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Order.Where(o => o.OrderID == id).First();
             return data;
         }
 
         public List<Order> GetAll()
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Order.ToList();
             return data;
         }
         public void Update(int id, Order entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Order.Where(o => o.OrderID == id).First();
             data.OrderState = entity.OrderState;
             data.OrderMoney = entity.OrderMoney;

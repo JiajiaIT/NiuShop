@@ -9,5 +9,6 @@ namespace IDAL
 {
     public interface IAdmins : IBase<Admins>
     {
+        int Login(string adminname, string adminpwd);
     }
 }

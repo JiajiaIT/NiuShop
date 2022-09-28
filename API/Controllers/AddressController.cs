@@ -19,7 +19,6 @@ namespace API.Controllers
     [RoutePrefix("api/Address")]
     public class AddressController : ApiController
     {
-        BAddress bAddress = new BAddress();
         /// <summary>
         /// 收货地址列表
         /// </summary>
@@ -30,6 +29,7 @@ namespace API.Controllers
         {
             try
             {
+                BAddress bAddress = new BAddress();
                 var data = bAddress.GetAll();
                 return Json(new Result<object>
                 {
@@ -43,7 +43,7 @@ namespace API.Controllers
                 return Json(new Result<object>
                 {
                     Code = 404,
-                    Message = "失败,"+ex.Message
+                    Message = "失败," + ex.Message
                 });
             }
         }
@@ -58,6 +58,7 @@ namespace API.Controllers
         {
             try
             {
+                BAddress bAddress = new BAddress();
                 var data = bAddress.FindByID(id);
                 return Json(new Result<object>
                 {
@@ -84,6 +85,7 @@ namespace API.Controllers
         {
             try
             {
+                BAddress bAddress = new BAddress();
                 bAddress.Add(address);
                 return Json(new Result<object>
                 {
@@ -112,6 +114,7 @@ namespace API.Controllers
         {
             try
             {
+                BAddress bAddress = new BAddress();
                 bAddress.Update(id, address);
                 return Json(new Result<object>
                 {
@@ -139,6 +142,7 @@ namespace API.Controllers
         {
             try
             {
+                BAddress bAddress = new BAddress();
                 bAddress.Delete(id);
                 return Json(new Result<object>
                 {

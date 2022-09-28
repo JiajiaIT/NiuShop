@@ -10,15 +10,16 @@ namespace DAL
 {
     public class DProduct : IDAL.IProduct
     {
-        NiuShopDBEntities db = new NiuShopDBEntities();
         public void Add(Product entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             db.Product.Add(entity);
             db.SaveChanges();
         }
 
         public void Delete(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Product.Where(p => p.ProductID == id).First();
             db.Product.Remove(data);
             db.SaveChanges();
@@ -26,18 +27,21 @@ namespace DAL
 
         public Product FindByID(int id)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Product.Where(p => p.ProductID == id).First();
             return data;
         }
 
         public List<Product> GetAll()
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Product.ToList();
             return data;
         }
 
         public void Update(int id, Product entity)
         {
+            NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Product.Where(p => p.ProductID == id).First();
             data.ProductName = entity.ProductName;
             data.Description = entity.Description;
