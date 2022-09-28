@@ -492,5 +492,34 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:API.Controllers.AddressController.FindByID(System.Int32)">
+            <summary>
+            收货地址详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.AddressController.Add(Model.Address)">
+            <summary>
+            添加收货地址
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.AddressController.Update(System.Int32,Model.Address)">
+            <summary>
+            修改收货地址
+            </summary>
+            <param name="id"></param>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.AddressController.Delete(System.Int32)">
+            <summary>
+            删除收货地址
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
