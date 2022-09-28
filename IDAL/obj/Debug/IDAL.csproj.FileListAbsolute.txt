@@ -1,0 +1,13 @@
+F:\NiuShop\IDAL\bin\Debug\IDAL.dll
+F:\NiuShop\IDAL\bin\Debug\IDAL.pdb
+F:\NiuShop\IDAL\bin\Debug\Model.dll
+F:\NiuShop\IDAL\bin\Debug\EntityFramework.dll
+F:\NiuShop\IDAL\bin\Debug\Model.pdb
+F:\NiuShop\IDAL\bin\Debug\Model.dll.config
+F:\NiuShop\IDAL\bin\Debug\EntityFramework.xml
+F:\NiuShop\IDAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+F:\NiuShop\IDAL\obj\Debug\IDAL.csprojAssemblyReference.cache
+F:\NiuShop\IDAL\obj\Debug\IDAL.csproj.CoreCompileInputs.cache
+F:\NiuShop\IDAL\obj\Debug\IDAL.csproj.CopyComplete
+F:\NiuShop\IDAL\obj\Debug\IDAL.dll
+F:\NiuShop\IDAL\obj\Debug\IDAL.pdb
