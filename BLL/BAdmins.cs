@@ -32,7 +32,7 @@ namespace BLL
             return Factory.CreateFactory.GetAdmins().GetAll();
         }
 
-        public int Login(string adminname, string adminpwd)
+        public Admins Login(string adminname, string adminpwd)
         {
             return Factory.CreateFactory.GetAdmins().Login(adminname, adminpwd);
         }

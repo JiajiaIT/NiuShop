@@ -39,17 +39,17 @@ namespace DAL
             return data;
         }
 
-        public int Login(string adminname, string adminpwd)
+        public Admins Login(string adminname, string adminpwd)
         {
             NiuShopDBEntities db = new NiuShopDBEntities();
-            var data = db.Admins.Where(a => a.AdminName == adminname && a.AdminPWD == adminpwd);
-            if (data.Count() > 0)
+            var data = db.Admins.Where(a => a.AdminName == adminname && a.AdminPWD == adminpwd).First();
+            if (data!=null)
             {
-                return 1;
+                return data;
             }
             else
             {
-                return 0;
+                return null;
             }
         }
 

@@ -174,12 +174,13 @@ namespace API.Controllers
             {
                 BAdmins bAdmins = new BAdmins();
                 var data = bAdmins.Login(admins.AdminName, admins.AdminPWD);
-                if (data > 0)
+                if (data != null)
                 {
                     return Json(new Result<object>
                     {
                         Code = 200,
-                        Message = "登录成功"
+                        Message = "登录成功",
+                        Data = data
                     });
                 }
                 else

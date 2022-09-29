@@ -1,0 +1,9 @@
+F:\NiuShop\Common\bin\Debug\Common.dll
+F:\NiuShop\Common\bin\Debug\Common.pdb
+F:\NiuShop\Common\bin\Debug\Newtonsoft.Json.dll
+F:\NiuShop\Common\bin\Debug\Newtonsoft.Json.xml
+F:\NiuShop\Common\obj\Debug\Common.csprojAssemblyReference.cache
+F:\NiuShop\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+F:\NiuShop\Common\obj\Debug\Common.csproj.CopyComplete
+F:\NiuShop\Common\obj\Debug\Common.dll
+F:\NiuShop\Common\obj\Debug\Common.pdb
