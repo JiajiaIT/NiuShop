@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -286,6 +287,46 @@
     <Content Include="Content\layui\css\modules\layer\default\loading-2.gif" />
     <Content Include="Content\layui\font\iconfont.svg" />
     <Content Include="Content\layui\layui.js" />
+    <Content Include="Content\media\css\dataTables.bootstrap.css" />
+    <Content Include="Content\media\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\media\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\media\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\media\css\dataTables.foundation.css" />
+    <Content Include="Content\media\css\dataTables.foundation.min.css" />
+    <Content Include="Content\media\css\dataTables.jqueryui.css" />
+    <Content Include="Content\media\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\media\css\dataTables.material.css" />
+    <Content Include="Content\media\css\dataTables.material.min.css" />
+    <Content Include="Content\media\css\dataTables.semanticui.css" />
+    <Content Include="Content\media\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\media\css\dataTables.uikit.css" />
+    <Content Include="Content\media\css\dataTables.uikit.min.css" />
+    <Content Include="Content\media\css\jquery.dataTables.css" />
+    <Content Include="Content\media\css\jquery.dataTables.min.css" />
+    <Content Include="Content\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\media\images\favicon.ico" />
+    <Content Include="Content\media\images\sort_asc.png" />
+    <Content Include="Content\media\images\sort_asc_disabled.png" />
+    <Content Include="Content\media\images\sort_both.png" />
+    <Content Include="Content\media\images\sort_desc.png" />
+    <Content Include="Content\media\images\sort_desc_disabled.png" />
+    <Content Include="Content\media\js\dataTables.bootstrap.js" />
+    <Content Include="Content\media\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\media\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\media\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\media\js\dataTables.foundation.js" />
+    <Content Include="Content\media\js\dataTables.foundation.min.js" />
+    <Content Include="Content\media\js\dataTables.jqueryui.js" />
+    <Content Include="Content\media\js\dataTables.jqueryui.min.js" />
+    <Content Include="Content\media\js\dataTables.material.js" />
+    <Content Include="Content\media\js\dataTables.material.min.js" />
+    <Content Include="Content\media\js\dataTables.semanticui.js" />
+    <Content Include="Content\media\js\dataTables.semanticui.min.js" />
+    <Content Include="Content\media\js\dataTables.uikit.js" />
+    <Content Include="Content\media\js\dataTables.uikit.min.js" />
+    <Content Include="Content\media\js\jquery.dataTables.js" />
+    <Content Include="Content\media\js\jquery.dataTables.min.js" />
+    <Content Include="Content\media\js\jquery.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -308,6 +349,7 @@
     <Content Include="Content\layui\font\iconfont.ttf" />
     <Content Include="Content\layui\font\iconfont.woff" />
     <Content Include="Content\layui\font\iconfont.woff2" />
+    <Content Include="Content\media\images\Sorting icons.psd" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -332,6 +374,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Admins\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

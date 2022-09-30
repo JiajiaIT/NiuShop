@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*这里是得到所有管理员的页面*@
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <td>编号</td>
+            <td>名字</td>
+            <td>密码</td>
+            <td>创建时间</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("table").DataTable({
+                'ajax': {
+                    url: "http://localhost:55128/api/Admins/List",
+                    'dataSrc': "Data",
+                },
+                'columns': [
+                    { 'data': "AdminID" },
+                    { 'data': "AdminName" },
+                    { 'data': "AdminPWD" },
+                    { 'data': "CreateTime" },
+                    { 'data': "AdminID" },
+                ],
+                columnDefs: [
+                    {
+                        "render": function (data, type, row) {
+                            return "<div class='btn btn-primary' data-id='" + data + "'>编辑</div><div onclick='Delete(this)' class='btn btn-danger' data - id='" + data + "'> 删除</div>";
+
+                        },
+                        "targets": 4,
+                    },
+                    //{ visible: false, targets: [3] },
+                    {
+                        render: function (data, type, row) {
+                            return data.split('T')[0];
+                        },
+                        targets: 3,
+                    },
+                    {
+                        render: function (data, type, row) {
+                            return data.split('T')[0];
+                        },
+                        targets: 3,
+                    },
+                ],
+                language: {
+                    lengthMenu: '显示 _MENU_ 当前显示页数',
+                    zeroRecords: 'Nothing found - sorry',
+                    info: '当前 第 _PAGE_ 共 _PAGES_页',
+                    infoEmpty: 'No records available',
+                    infoFiltered: '(filtered from _MAX_ total records)',
+                },
+            });
+        })
+        function Delete(e) {
+            var id = e.id;
+            $.post(APIURL + "api/Admins/Delete/"+id,null,function (data) {
+                if (data.Code == 200) {
+                    alert("删除成功")
+                    location.reload();
+                }
+                else {
+                    alert("删除失败")
+                }
+            })
+        }
+    </script>
+}
