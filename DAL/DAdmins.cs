@@ -12,6 +12,7 @@ namespace DAL
     {
         public void Add(Admins entity)
         {
+            entity.CreateTime = DateTime.Now;
             NiuShopDBEntities db = new NiuShopDBEntities();
             db.Admins.Add(entity);
             db.SaveChanges();
@@ -43,7 +44,7 @@ namespace DAL
         {
             NiuShopDBEntities db = new NiuShopDBEntities();
             var data = db.Admins.Where(a => a.AdminName == adminname && a.AdminPWD == adminpwd).First();
-            if (data!=null)
+            if (data != null)
             {
                 return data;
             }
