@@ -8,13 +8,13 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5E78AD85-4797-4D17-BDAC-B542C49554F0}</ProjectGuid>
+    <ProjectGuid>{30EC4F9A-0234-4450-B408-FCF09A9389F6}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdminUI</RootNamespace>
     <AssemblyName>AdminUI</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -122,10 +122,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\PropertyController.cs" />
+    <Compile Include="Controllers\TypesController.cs" />
+    <Compile Include="Filters\MyAuthenAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admins.cs" />
+    <Compile Include="Models\Board.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Property.cs" />
+    <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +169,46 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\uniform.default.css" />
     <Content Include="Content\css\uploadify.css" />
+    <Content Include="Content\media\css\dataTables.bootstrap.css" />
+    <Content Include="Content\media\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\media\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\media\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\media\css\dataTables.foundation.css" />
+    <Content Include="Content\media\css\dataTables.foundation.min.css" />
+    <Content Include="Content\media\css\dataTables.jqueryui.css" />
+    <Content Include="Content\media\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\media\css\dataTables.material.css" />
+    <Content Include="Content\media\css\dataTables.material.min.css" />
+    <Content Include="Content\media\css\dataTables.semanticui.css" />
+    <Content Include="Content\media\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\media\css\dataTables.uikit.css" />
+    <Content Include="Content\media\css\dataTables.uikit.min.css" />
+    <Content Include="Content\media\css\jquery.dataTables.css" />
+    <Content Include="Content\media\css\jquery.dataTables.min.css" />
+    <Content Include="Content\media\css\jquery.dataTables_themeroller.css" />
+    <Content Include="Content\media\images\favicon.ico" />
+    <Content Include="Content\media\images\sort_asc.png" />
+    <Content Include="Content\media\images\sort_asc_disabled.png" />
+    <Content Include="Content\media\images\sort_both.png" />
+    <Content Include="Content\media\images\sort_desc.png" />
+    <Content Include="Content\media\images\sort_desc_disabled.png" />
+    <Content Include="Content\media\js\dataTables.bootstrap.js" />
+    <Content Include="Content\media\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\media\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\media\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\media\js\dataTables.foundation.js" />
+    <Content Include="Content\media\js\dataTables.foundation.min.js" />
+    <Content Include="Content\media\js\dataTables.jqueryui.js" />
+    <Content Include="Content\media\js\dataTables.jqueryui.min.js" />
+    <Content Include="Content\media\js\dataTables.material.js" />
+    <Content Include="Content\media\js\dataTables.material.min.js" />
+    <Content Include="Content\media\js\dataTables.semanticui.js" />
+    <Content Include="Content\media\js\dataTables.semanticui.min.js" />
+    <Content Include="Content\media\js\dataTables.uikit.js" />
+    <Content Include="Content\media\js\dataTables.uikit.min.js" />
+    <Content Include="Content\media\js\jquery.dataTables.js" />
+    <Content Include="Content\media\js\jquery.dataTables.min.js" />
+    <Content Include="Content\media\js\jquery.js" />
     <Content Include="Content\font\glyphicons-regular.svg" />
     <Content Include="Content\font\glyphiconshalflings-regular.svg" />
     <Content Include="Content\img\arrows-active.png" />
@@ -275,7 +326,6 @@
     <Content Include="Content\js\jquery.uploadify-3.1.min.js" />
     <Content Include="Content\js\modernizr.js" />
     <Content Include="Content\js\retina.js" />
-    <Content Include="Content\js\tools.js" />
     <Content Include="Content\layui\css\layui.css" />
     <Content Include="Content\layui\css\modules\code.css" />
     <Content Include="Content\layui\css\modules\laydate\default\laydate.css" />
@@ -287,46 +337,6 @@
     <Content Include="Content\layui\css\modules\layer\default\loading-2.gif" />
     <Content Include="Content\layui\font\iconfont.svg" />
     <Content Include="Content\layui\layui.js" />
-    <Content Include="Content\media\css\dataTables.bootstrap.css" />
-    <Content Include="Content\media\css\dataTables.bootstrap.min.css" />
-    <Content Include="Content\media\css\dataTables.bootstrap4.css" />
-    <Content Include="Content\media\css\dataTables.bootstrap4.min.css" />
-    <Content Include="Content\media\css\dataTables.foundation.css" />
-    <Content Include="Content\media\css\dataTables.foundation.min.css" />
-    <Content Include="Content\media\css\dataTables.jqueryui.css" />
-    <Content Include="Content\media\css\dataTables.jqueryui.min.css" />
-    <Content Include="Content\media\css\dataTables.material.css" />
-    <Content Include="Content\media\css\dataTables.material.min.css" />
-    <Content Include="Content\media\css\dataTables.semanticui.css" />
-    <Content Include="Content\media\css\dataTables.semanticui.min.css" />
-    <Content Include="Content\media\css\dataTables.uikit.css" />
-    <Content Include="Content\media\css\dataTables.uikit.min.css" />
-    <Content Include="Content\media\css\jquery.dataTables.css" />
-    <Content Include="Content\media\css\jquery.dataTables.min.css" />
-    <Content Include="Content\media\css\jquery.dataTables_themeroller.css" />
-    <Content Include="Content\media\images\favicon.ico" />
-    <Content Include="Content\media\images\sort_asc.png" />
-    <Content Include="Content\media\images\sort_asc_disabled.png" />
-    <Content Include="Content\media\images\sort_both.png" />
-    <Content Include="Content\media\images\sort_desc.png" />
-    <Content Include="Content\media\images\sort_desc_disabled.png" />
-    <Content Include="Content\media\js\dataTables.bootstrap.js" />
-    <Content Include="Content\media\js\dataTables.bootstrap.min.js" />
-    <Content Include="Content\media\js\dataTables.bootstrap4.js" />
-    <Content Include="Content\media\js\dataTables.bootstrap4.min.js" />
-    <Content Include="Content\media\js\dataTables.foundation.js" />
-    <Content Include="Content\media\js\dataTables.foundation.min.js" />
-    <Content Include="Content\media\js\dataTables.jqueryui.js" />
-    <Content Include="Content\media\js\dataTables.jqueryui.min.js" />
-    <Content Include="Content\media\js\dataTables.material.js" />
-    <Content Include="Content\media\js\dataTables.material.min.js" />
-    <Content Include="Content\media\js\dataTables.semanticui.js" />
-    <Content Include="Content\media\js\dataTables.semanticui.min.js" />
-    <Content Include="Content\media\js\dataTables.uikit.js" />
-    <Content Include="Content\media\js\dataTables.uikit.min.js" />
-    <Content Include="Content\media\js\jquery.dataTables.js" />
-    <Content Include="Content\media\js\jquery.dataTables.min.js" />
-    <Content Include="Content\media\js\jquery.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -350,17 +360,31 @@
     <Content Include="Content\layui\font\iconfont.woff" />
     <Content Include="Content\layui\font\iconfont.woff2" />
     <Content Include="Content\media\images\Sorting icons.psd" />
+    <Content Include="Scripts\Html5ImgCompress\.project" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Html5ImgCompress\img\1.jpeg" />
+    <Content Include="Scripts\Html5ImgCompress\index - 副本.html" />
+    <Content Include="Scripts\Html5ImgCompress\index.html" />
+    <Content Include="Scripts\Html5ImgCompress\js\0.chunk.min.js" />
+    <Content Include="Scripts\Html5ImgCompress\js\1.chunk.min.js" />
+    <Content Include="Scripts\Html5ImgCompress\js\2.chunk.min.js" />
+    <Content Include="Scripts\Html5ImgCompress\js\html5ImgCompress.min.js" />
+    <Content Include="Scripts\Html5ImgCompress\js\jquery-1.11.0.js" />
+    <Content Include="Scripts\Html5ImgCompress\test.html" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\resize.js" />
+    <Content Include="Scripts\tools.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -372,13 +396,24 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Admins\List.cshtml" />
+    <Content Include="Views\Admins\Index.cshtml" />
+    <Content Include="Views\Admins\Add.cshtml" />
+    <Content Include="Views\Board\Index.cshtml" />
+    <Content Include="Views\Board\Add.cshtml" />
+    <Content Include="Views\Board\Edit.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Add.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Types\Index.cshtml" />
+    <Content Include="Views\Types\Edit.cshtml" />
+    <Content Include="Views\Property\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Scripts\Html5ImgCompress\css\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -392,6 +427,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{f3a4be7b-d461-41b0-93da-8912931977e5}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -409,9 +450,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>56452</DevelopmentServerPort>
+          <DevelopmentServerPort>1325</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:56452/</IISUrl>
+          <IISUrl>http://localhost:1325/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

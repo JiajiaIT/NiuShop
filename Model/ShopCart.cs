@@ -21,5 +21,6 @@ namespace Model
         public Nullable<System.DateTime> CreateTime { get; set; }
     
         public virtual Customer Customer { get; set; }
+        public virtual ProductProperty ProductProperty { get; set; }
     }
 }

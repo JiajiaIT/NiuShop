@@ -18,6 +18,7 @@ namespace Model
         public ProductProperty()
         {
             this.OrderDetail = new HashSet<OrderDetail>();
+            this.ShopCart = new HashSet<ShopCart>();
         }
     
         public int PropertyID { get; set; }
@@ -26,11 +27,13 @@ namespace Model
         public Nullable<decimal> Price { get; set; }
         public Nullable<int> Quantity { get; set; }
         public string Description { get; set; }
-        public Nullable<System.DateTime> CreateTime { get; set; }
+        public Nullable<System.DateTime> CreateTIme { get; set; }
         public Nullable<int> TypeID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
         public virtual ProductType ProductType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShopCart> ShopCart { get; set; }
     }
 }

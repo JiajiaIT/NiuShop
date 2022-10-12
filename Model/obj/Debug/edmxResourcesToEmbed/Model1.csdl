@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="NiuShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Address">
     <Key>
       <PropertyRef Name="AddressID" />
     </Key>
     <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="AddressInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddressInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Postcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IsDefault" Type="Boolean" />
-    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="AddressType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="AddresssName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Areas" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="AddressName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_Address_Customer" FromRole="Address" ToRole="Customer" />
   </EntityType>
   <EntityType Name="Admins">
@@ -33,30 +33,31 @@
     <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CustomerPWD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTIme" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Address" Relationship="Self.FK_Address_Customer" FromRole="Customer" ToRole="Address" />
     <NavigationProperty Name="Order" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
     <NavigationProperty Name="ShopCart" Relationship="Self.FK_ShopCart_Customer" FromRole="Customer" ToRole="ShopCart" />
+    <NavigationProperty Name="Tokens" Relationship="Model.FK_Tokens_Customer" FromRole="Customer" ToRole="Tokens" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
       <PropertyRef Name="OrderID" />
     </Key>
     <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="OrderState" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="OrderMoney" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="OrderState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrderMoney" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="SenDate" Type="DateTime" Precision="3" />
     <Property Name="ReceiveDate" Type="DateTime" Precision="3" />
-    <Property Name="AddressInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddressInfo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="InvoiceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="InvoiceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Postage" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Postage" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="Express" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ExpressNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpressNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
-    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <Property Name="CustomerID" Type="Int32" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
     <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
   </EntityType>
@@ -64,16 +65,16 @@
     <Key>
       <PropertyRef Name="DetailID" />
     </Key>
-    <Property Name="DetailID" Type="Int32" Nullable="false" />
+    <Property Name="DetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="OrderID" Type="Int32" />
     <Property Name="ProperID" Type="Int32" />
     <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ProperName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IMG" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IMG" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Quantity" Type="Int32" />
-    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
-    <Property Name="TotalMoney" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalMoney" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
     <NavigationProperty Name="ProductProperty" Relationship="Self.FK_OrderDetail_ProductProperty" FromRole="OrderDetail" ToRole="ProductProperty" />
@@ -86,8 +87,12 @@
     <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Postage" Type="Int32" />
-    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateTIme" Type="DateTime" Precision="3" />
     <NavigationProperty Name="ProductType" Relationship="Self.FK_ProductType_Product" FromRole="Product" ToRole="ProductType" />
+    <Property Name="IsOnline" Type="Boolean" />
+    <Property Name="BoardID" Type="Int32" />
+    <Property Name="Cover" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProductBoard" Relationship="Model.FK_Product_ProductBoard" FromRole="Product" ToRole="ProductBoard" />
   </EntityType>
   <EntityType Name="ProductProperty">
     <Key>
@@ -95,14 +100,15 @@
     </Key>
     <Property Name="PropertyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="PropertyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="IMG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="IMG" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
     <Property Name="Quantity" Type="Int32" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="CreateTIme" Type="DateTime" Precision="3" />
     <Property Name="TypeID" Type="Int32" />
     <NavigationProperty Name="OrderDetail" Relationship="Self.FK_OrderDetail_ProductProperty" FromRole="ProductProperty" ToRole="OrderDetail" />
     <NavigationProperty Name="ProductType" Relationship="Self.FK_ProductProperty_ProductType" FromRole="ProductProperty" ToRole="ProductType" />
+    <NavigationProperty Name="ShopCart" Relationship="Self.FK_ShopCart_ProductProperty" FromRole="ProductProperty" ToRole="ShopCart" />
   </EntityType>
   <EntityType Name="ProductType">
     <Key>
@@ -110,9 +116,9 @@
     </Key>
     <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
-    <Property Name="ProdutID" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" />
     <NavigationProperty Name="Product" Relationship="Self.FK_ProductType_Product" FromRole="ProductType" ToRole="Product" />
     <NavigationProperty Name="ProductProperty" Relationship="Self.FK_ProductProperty_ProductType" FromRole="ProductType" ToRole="ProductProperty" />
   </EntityType>
@@ -126,9 +132,10 @@
     <Property Name="Quantity" Type="Int32" />
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Customer" Relationship="Self.FK_ShopCart_Customer" FromRole="ShopCart" ToRole="Customer" />
+    <NavigationProperty Name="ProductProperty" Relationship="Self.FK_ShopCart_ProductProperty" FromRole="ShopCart" ToRole="ProductProperty" />
   </EntityType>
   <Association Name="FK_Address_Customer">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Address" Type="Self.Address" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customer">
@@ -140,7 +147,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Order_Customer">
-    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
     <End Role="Order" Type="Self.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customer">
@@ -195,7 +202,7 @@
         <PropertyRef Name="ProductID" />
       </Principal>
       <Dependent Role="ProductType">
-        <PropertyRef Name="ProdutID" />
+        <PropertyRef Name="ProductID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -211,7 +218,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="NiuShopDBEntities" annotation:LazyLoadingEnabled="true">
+  <Association Name="FK_ShopCart_ProductProperty">
+    <End Role="ProductProperty" Type="Self.ProductProperty" Multiplicity="0..1" />
+    <End Role="ShopCart" Type="Self.ShopCart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductProperty">
+        <PropertyRef Name="PropertyID" />
+      </Principal>
+      <Dependent Role="ShopCart">
+        <PropertyRef Name="ProperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="nd20002Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Address" EntityType="Self.Address" />
     <EntitySet Name="Admins" EntityType="Self.Admins" />
     <EntitySet Name="Customer" EntityType="Self.Customer" />
@@ -249,5 +268,62 @@
       <End Role="ProductType" EntitySet="ProductType" />
       <End Role="ProductProperty" EntitySet="ProductProperty" />
     </AssociationSet>
+    <AssociationSet Name="FK_ShopCart_ProductProperty" Association="Self.FK_ShopCart_ProductProperty">
+      <End Role="ProductProperty" EntitySet="ProductProperty" />
+      <End Role="ShopCart" EntitySet="ShopCart" />
+    </AssociationSet>
+    <EntitySet Name="ProductBoard" EntityType="Model.ProductBoard" />
+    <EntitySet Name="Tokens" EntityType="Model.Tokens" />
+    <AssociationSet Name="FK_Tokens_Customer" Association="Model.FK_Tokens_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Tokens" EntitySet="Tokens" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductBoard" Association="Model.FK_Product_ProductBoard">
+      <End Role="ProductBoard" EntitySet="ProductBoard" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="ProductBoard">
+    <Key>
+      <PropertyRef Name="BoardID" />
+    </Key>
+    <Property Name="BoardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BoardNameCN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BoardNameEN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Power" Type="Int32" />
+    <NavigationProperty Name="Product" Relationship="Model.FK_Product_ProductBoard" FromRole="ProductBoard" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Tokens">
+    <Key>
+      <PropertyRef Name="TokenID" />
+    </Key>
+    <Property Name="TokenID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="OutTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Customer" Relationship="Model.FK_Tokens_Customer" FromRole="Tokens" ToRole="Customer" />
+  </EntityType>
+  <Association Name="FK_Tokens_Customer">
+    <End Type="Model.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="Model.Tokens" Role="Tokens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Tokens">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductBoard">
+    <End Type="Model.ProductBoard" Role="ProductBoard" Multiplicity="0..1" />
+    <End Type="Model.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductBoard">
+        <PropertyRef Name="BoardID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="BoardID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

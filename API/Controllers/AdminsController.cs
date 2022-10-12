@@ -1,205 +1,158 @@
-﻿using System;
+﻿using API.Models;
+using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Model;
-using IDAL;
-using DAL;
-using Factory;
-using BLL;
-using API.Models;
 
 namespace API.Controllers
 {
-    /// <summary>
-    /// 管理员
-    /// </summary>
-    [RoutePrefix("api/Admins")]
+    [RoutePrefix("api/admins")]
     public class AdminsController : ApiController
     {
         /// <summary>
-        /// 管理员列表
+        /// 获取所有管理员
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("List")]
-        public IHttpActionResult List()
+        [Route("GetData")]
+
+        public IHttpActionResult GetData()
         {
-            try
+            var result = new Models.Result<List<Model.Admins>>()
             {
-                BAdmins bAdmins = new BAdmins();
-                var data = bAdmins.GetAll();
-                return Json(new Result<object>
+                Data = new BLL.B_Admins().GetAll()
+            };
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// 管理员登陆
+        /// </summary>
+        /// <param name="username">用户名</param>
+        /// <param name="password">密码</param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Login")]
+        public IHttpActionResult CheckUser(Param_Admins admin)
+        {
+            var data = new BLL.B_Admins().CheckUser(admin.Username, admin.Password);
+
+            var result = new Result<Admins>();
+            if (data == null)
+            {
+                result.Code = 404;
+                result.Msg = "用户不能存在";
+            }
+
+            result.Data = data;
+
+            return Ok(result);
+        }
+
+        /// <summary>
+        /// 注册管理员
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("Reg")]
+        public IHttpActionResult CreateAdmins(Param_Admins admin)
+        {
+            var db = new BLL.B_Admins();
+
+            if (db.GetAll().Count(x => x.AdminName == admin.Username) == 0)
+            {
+                var data = new Admins
                 {
-                    Code = 200,
-                    Message = "成功",
+                    AdminName = admin.Username,
+                    AdminPWD = admin.Password,
+                    CreateTime = DateTime.Now
+                };
+                db.Add(data);
+
+                return Ok(new Result<Admins>()
+                {
                     Data = data
                 });
             }
-            catch (Exception ex)
+            else
             {
-                return Json(new Result<object>
+                return Ok(new Result<object>
                 {
-                    Code = 404,
-                    Message = "失败," + ex
+                    Code = 403,
+                    Msg = "当前账户已存在"
                 });
             }
         }
-        /// <summary>
-        /// 管理员详情
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("FindByID/{id}")]
-        public IHttpActionResult FindByID(int id)
-        {
-            try
-            {
-                BAdmins bAdmins = new BAdmins();
-                var data = bAdmins.FindByID(id);
-                return Json(new Result<object>
-                {
-                    Code = 200,
-                    Message = "成功",
-                    Data = data
-                });
-            }
-            catch (Exception ex)
-            {
-                return Json(new Result<object>
-                {
-                    Code = 404,
-                    Message = "失败," + ex
-                });
-            }
-        }
-        /// <summary>
-        /// 添加管理员
-        /// </summary>
-        /// <param name="admins"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Add")]
-        public IHttpActionResult Add(Admins admins)
-        {
-            try
-            {
-                BAdmins bAdmins = new BAdmins();
-                bAdmins.Add(admins);
-                return Json(new Result<object>
-                {
-                    Code = 200,
-                    Message = "添加成功"
-                });
-            }
-            catch (Exception ex)
-            {
-                return Json(new Result<object>
-                {
-                    Code = 404,
-                    Message = "添加失败," + ex
-                });
-            }
-        }
-        /// <summary>
-        /// 修改管理员
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="admins"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [Route("Update/{id}")]
-        public IHttpActionResult Update(int id, Admins admins)
-        {
-            try
-            {
-                BAdmins bAdmins = new BAdmins();
-                bAdmins.Update(id, admins);
-                return Json(new Result<object>
-                {
-                    Code = 200,
-                    Message = "修改成功"
-                });
-            }
-            catch (Exception ex)
-            {
-                return Json(new Result<object>
-                {
-                    Code = 404,
-                    Message = "修改失败," + ex
-                });
-            }
-        }
+
         /// <summary>
         /// 删除管理员
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         [Route("Delete/{id}")]
         public IHttpActionResult Delete(int id)
         {
             try
             {
-                BAdmins bAdmins = new BAdmins();
-                bAdmins.Delete(id);
-                return Json(new Result<object>
+                new BLL.B_Admins().Delete(id);
+                return Ok(new Result<object>()
                 {
-                    Code = 200,
-                    Message = "删除成功"
+                    Msg = "删除成功"
                 });
             }
             catch (Exception ex)
             {
-                return Json(new Result<object>
+                return Ok(new Result<object>()
                 {
-                    Code = 404,
-                    Message = "删除失败，" + ex
+                    Code = 500,
+                    Msg = "该用户已删除"
                 });
             }
         }
+
         /// <summary>
-        /// 管理员登录
+        /// 修改管理员密码
         /// </summary>
-        /// <param name="admins"></param>
+        /// <param name="id"></param>
+        /// <param name="admin"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Login")]
-        public IHttpActionResult Login([FromBody]Admins admins)
+        [Route("Update/{id}")]
+        public IHttpActionResult Update(int id, Param_Admins admin)
         {
+            Admins p = new Admins
+            {
+                AdminPWD = admin.Password
+            };
+
             try
             {
-                BAdmins bAdmins = new BAdmins();
-                var data = bAdmins.Login(admins.AdminName, admins.AdminPWD);
-                if (data != null)
-                {
-                    return Json(new Result<object>
-                    {
-                        Code = 200,
-                        Message = "登录成功",
-                        Data = data
-                    });
-                }
-                else
-                {
-                    return Json(new Result<object>
-                    {
-                        Code = 404,
-                        Message = "登录失败"
-                    });
-                }
+                new BLL.B_Admins().Update(id, p);
+                return Ok(new Result<object>());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return Json(new Result<object>
+                return Ok(new Result<object>()
                 {
-                    Code = 404,
-                    Message = "登录失败," + ex
+                    Code = 500,
+                    Msg = "操作失败，请联系管理员"
                 });
             }
+        }
+
+        [HttpGet]
+        [Route("Find/{id}")]
+        public IHttpActionResult FindById(int id)
+        {
+            return Ok(new Result<Admins>
+            {
+                Data = new BLL.B_Admins().FindById(id)
+            });
         }
     }
 }

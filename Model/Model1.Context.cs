@@ -13,11 +13,14 @@ namespace Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NiuShopDBEntities : DbContext
+    public partial class nd20002Entities : DbContext
     {
-        public NiuShopDBEntities()
-            : base("name=NiuShopDBEntities")
+        public nd20002Entities()
+            : base("name=nd20002Entities")
         {
+            //解决序列化时导航属性循环依赖的问题
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -34,5 +37,7 @@ namespace Model
         public virtual DbSet<ProductProperty> ProductProperty { get; set; }
         public virtual DbSet<ProductType> ProductType { get; set; }
         public virtual DbSet<ShopCart> ShopCart { get; set; }
+        public virtual DbSet<ProductBoard> ProductBoard { get; set; }
+        public virtual DbSet<Tokens> Tokens { get; set; }
     }
 }

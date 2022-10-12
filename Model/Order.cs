@@ -32,7 +32,7 @@ namespace Model
         public string Express { get; set; }
         public string ExpressNumber { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
-        public int CustomerID { get; set; }
+        public Nullable<int> CustomerID { get; set; }
     
         public virtual Customer Customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

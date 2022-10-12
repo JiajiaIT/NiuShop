@@ -4,23 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2822f34a56504f9aa3fa5dd9d9f6a357" Name="Diagram1">
-        <EntityTypeShape EntityType="NiuShopDBModel.Address" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NiuShopDBModel.Admins" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NiuShopDBModel.Customer" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NiuShopDBModel.Order" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="NiuShopDBModel.OrderDetail" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="NiuShopDBModel.Product" Width="1.5" PointX="1.5" PointY="17.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="NiuShopDBModel.ProductProperty" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="NiuShopDBModel.ProductType" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="NiuShopDBModel.ShopCart" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <AssociationConnector Association="NiuShopDBModel.FK_Address_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="NiuShopDBModel.FK_Order_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="NiuShopDBModel.FK_ShopCart_Customer" ManuallyRouted="false" />
-        <AssociationConnector Association="NiuShopDBModel.FK_OrderDetail_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="NiuShopDBModel.FK_OrderDetail_ProductProperty" ManuallyRouted="false" />
-        <AssociationConnector Association="NiuShopDBModel.FK_ProductType_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="NiuShopDBModel.FK_ProductProperty_ProductType" ManuallyRouted="false" />
+      <Diagram DiagramId="ad2ec43dcc1c4671a4f7eae2be53b398" Name="Diagram1" ZoomLevel="149">
+        <EntityTypeShape EntityType="Model.Address" Width="1.5" PointX="5.25" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Admins" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Customer" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Order" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.OrderDetail" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Product" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ProductProperty" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ProductType" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.ShopCart" Width="1.5" PointX="10.5" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Address_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ShopCart_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_OrderDetail_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_OrderDetail_ProductProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ProductType_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ProductProperty_ProductType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ShopCart_ProductProperty" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.ProductBoard" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.Tokens" Width="1.5" PointX="5.25" PointY="19.5" />
+        <AssociationConnector Association="Model.FK_Tokens_Customer" />
+        <AssociationConnector Association="Model.FK_Product_ProductBoard" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -20,6 +20,7 @@ namespace Model
             this.Address = new HashSet<Address>();
             this.Order = new HashSet<Order>();
             this.ShopCart = new HashSet<ShopCart>();
+            this.Tokens = new HashSet<Tokens>();
         }
     
         public int CustomerID { get; set; }
@@ -27,7 +28,7 @@ namespace Model
         public string CustomerPWD { get; set; }
         public string Tel { get; set; }
         public string Email { get; set; }
-        public Nullable<System.DateTime> CreateTime { get; set; }
+        public Nullable<System.DateTime> CreateTIme { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Address { get; set; }
@@ -35,5 +36,7 @@ namespace Model
         public virtual ICollection<Order> Order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShopCart> ShopCart { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tokens> Tokens { get; set; }
     }
 }

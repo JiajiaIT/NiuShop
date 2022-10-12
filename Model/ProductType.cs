@@ -24,7 +24,7 @@ namespace Model
         public string TypeName { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
-        public Nullable<int> ProdutID { get; set; }
+        public Nullable<int> ProductID { get; set; }
     
         public virtual Product Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

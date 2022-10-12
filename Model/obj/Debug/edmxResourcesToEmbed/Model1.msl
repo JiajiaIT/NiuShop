@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="NiuShopDBModelStoreContainer" CdmEntityContainer="NiuShopDBEntities">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="nd20002Entities">
     <EntitySetMapping Name="Address">
-      <EntityTypeMapping TypeName="NiuShopDBModel.Address">
+      <EntityTypeMapping TypeName="Model.Address">
         <MappingFragment StoreEntitySet="Address">
           <ScalarProperty Name="AddressID" ColumnName="AddressID" />
           <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
@@ -13,13 +13,13 @@
           <ScalarProperty Name="AddressType" ColumnName="AddressType" />
           <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="AddresssName" ColumnName="AddresssName" />
           <ScalarProperty Name="Areas" ColumnName="Areas" />
-          <ScalarProperty Name="AddressName" ColumnName="AddressName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Admins">
-      <EntityTypeMapping TypeName="NiuShopDBModel.Admins">
+      <EntityTypeMapping TypeName="Model.Admins">
         <MappingFragment StoreEntitySet="Admins">
           <ScalarProperty Name="AdminID" ColumnName="AdminID" />
           <ScalarProperty Name="AdminName" ColumnName="AdminName" />
@@ -29,19 +29,19 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Customer">
-      <EntityTypeMapping TypeName="NiuShopDBModel.Customer">
+      <EntityTypeMapping TypeName="Model.Customer">
         <MappingFragment StoreEntitySet="Customer">
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
           <ScalarProperty Name="CustomerPWD" ColumnName="CustomerPWD" />
           <ScalarProperty Name="Tel" ColumnName="Tel" />
           <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateTIme" ColumnName="CreateTIme" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Order">
-      <EntityTypeMapping TypeName="NiuShopDBModel.Order">
+      <EntityTypeMapping TypeName="Model.Order">
         <MappingFragment StoreEntitySet="Order">
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
           <ScalarProperty Name="OrderState" ColumnName="OrderState" />
@@ -60,7 +60,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="OrderDetail">
-      <EntityTypeMapping TypeName="NiuShopDBModel.OrderDetail">
+      <EntityTypeMapping TypeName="Model.OrderDetail">
         <MappingFragment StoreEntitySet="OrderDetail">
           <ScalarProperty Name="DetailID" ColumnName="DetailID" />
           <ScalarProperty Name="OrderID" ColumnName="OrderID" />
@@ -77,18 +77,21 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Product">
-      <EntityTypeMapping TypeName="NiuShopDBModel.Product">
+      <EntityTypeMapping TypeName="Model.Product">
         <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Cover" ColumnName="Cover" />
+          <ScalarProperty Name="BoardID" ColumnName="BoardID" />
+          <ScalarProperty Name="IsOnline" ColumnName="IsOnline" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Postage" ColumnName="Postage" />
-          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateTIme" ColumnName="CreateTIme" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductProperty">
-      <EntityTypeMapping TypeName="NiuShopDBModel.ProductProperty">
+      <EntityTypeMapping TypeName="Model.ProductProperty">
         <MappingFragment StoreEntitySet="ProductProperty">
           <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
           <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
@@ -96,30 +99,49 @@
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="CreateTIme" ColumnName="CreateTIme" />
           <ScalarProperty Name="TypeID" ColumnName="TypeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProductType">
-      <EntityTypeMapping TypeName="NiuShopDBModel.ProductType">
+      <EntityTypeMapping TypeName="Model.ProductType">
         <MappingFragment StoreEntitySet="ProductType">
           <ScalarProperty Name="TypeID" ColumnName="TypeID" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-          <ScalarProperty Name="ProdutID" ColumnName="ProdutID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ShopCart">
-      <EntityTypeMapping TypeName="NiuShopDBModel.ShopCart">
+      <EntityTypeMapping TypeName="Model.ShopCart">
         <MappingFragment StoreEntitySet="ShopCart">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="ProperID" ColumnName="ProperID" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductBoard">
+      <EntityTypeMapping TypeName="Model.ProductBoard">
+        <MappingFragment StoreEntitySet="ProductBoard">
+          <ScalarProperty Name="Power" ColumnName="Power" />
+          <ScalarProperty Name="BoardNameEN" ColumnName="BoardNameEN" />
+          <ScalarProperty Name="BoardNameCN" ColumnName="BoardNameCN" />
+          <ScalarProperty Name="BoardID" ColumnName="BoardID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tokens">
+      <EntityTypeMapping TypeName="Model.Tokens">
+        <MappingFragment StoreEntitySet="Tokens">
+          <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="TokenID" ColumnName="TokenID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -24,9 +24,13 @@ namespace Model
         public string ProductName { get; set; }
         public string Description { get; set; }
         public Nullable<int> Postage { get; set; }
-        public Nullable<System.DateTime> CreateTime { get; set; }
+        public Nullable<System.DateTime> CreateTIme { get; set; }
+        public Nullable<bool> IsOnline { get; set; }
+        public Nullable<int> BoardID { get; set; }
+        public string Cover { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductType> ProductType { get; set; }
+        public virtual ProductBoard ProductBoard { get; set; }
     }
 }

@@ -1,14 +1,10 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-
-@*这里将充当布局页*@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+
     <!-- start: Meta -->
     <meta charset="utf-8">
-    <title>后台管理界面</title>
+    <title>@ViewBag.Title</title>
     <meta name="description" content="Bootstrap Metro Dashboard">
     <meta name="author" content="Dennis Ji">
     <meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
@@ -17,15 +13,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- end: Mobile Specific -->
     <!-- start: CSS -->
-    <link id="bootstrap-style" href="/Content/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/Content/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link id="base-style" href="/Content/css/style.css" rel="stylesheet">
-    <link id="base-style-responsive" href="/Content/css/style-responsive.css" rel="stylesheet">
+    <link id="bootstrap-style" href="/content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/content/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link id="base-style" href="/content/css/style.css" rel="stylesheet">
+    <link id="base-style-responsive" href="/content/css/style-responsive.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+    <!-- end: CSS -->
+    <link href="~/Content/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <link href="~/Content/media/css/dataTables.bootstrap.css" rel="stylesheet" />
     <!-- start: Favicon -->
-    <link rel="shortcut icon" href="/Content/img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
     <!-- end: Favicon -->
+
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+
 </head>
+
 <body>
     <!-- start: Header -->
     <div class="navbar">
@@ -37,6 +42,7 @@
                     <span class="icon-bar"></span>
                 </a>
                 <a class="brand" href="index.html"><span>Metro</span></a>
+
                 <!-- start: Header Menu -->
                 <div class="nav-no-collapse header-nav">
                     <ul class="nav pull-right">
@@ -197,7 +203,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="avatar"><img src="/Content/img/avatar.jpg" alt="Avatar"></span>
+                                        <span class="avatar"><img src="/content/img/avatar.jpg" alt="Avatar"></span>
                                         <span class="header">
                                             <span class="from">
                                                 Dennis Ji
@@ -213,7 +219,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="avatar"><img src="/Content/img/avatar.jpg" alt="Avatar"></span>
+                                        <span class="avatar"><img src="/content/img/avatar.jpg" alt="Avatar"></span>
                                         <span class="header">
                                             <span class="from">
                                                 Dennis Ji
@@ -229,7 +235,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="avatar"><img src="/Content/img/avatar.jpg" alt="Avatar"></span>
+                                        <span class="avatar"><img src="/content/img/avatar.jpg" alt="Avatar"></span>
                                         <span class="header">
                                             <span class="from">
                                                 Dennis Ji
@@ -245,7 +251,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="avatar"><img src="/Content/img/avatar.jpg" alt="Avatar"></span>
+                                        <span class="avatar"><img src="/content/img/avatar.jpg" alt="Avatar"></span>
                                         <span class="header">
                                             <span class="from">
                                                 Dennis Ji
@@ -261,7 +267,7 @@
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <span class="avatar"><img src="/Content/img/avatar.jpg" alt="Avatar"></span>
+                                        <span class="avatar"><img src="/content/img/avatar.jpg" alt="Avatar"></span>
                                         <span class="header">
                                             <span class="from">
                                                 Dennis Ji
@@ -297,37 +303,41 @@
                                     <span>Account Settings</span>
                                 </li>
                                 <li><a href="#"><i class="halflings-icon user"></i> Profile</a></li>
-                                <li><a href="@Url.Action("LogOut","Home")"><i class="halflings-icon off"></i> Logout</a></li>
+                                <li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
                             </ul>
                         </li>
                         <!-- end: User Dropdown -->
                     </ul>
                 </div>
                 <!-- end: Header Menu -->
+
             </div>
         </div>
     </div>
     <!-- start: Header -->
+
     <div class="container-fluid-full">
         <div class="row-fluid">
+
             <!-- start: Main Menu -->
             <div id="sidebar-left" class="span2">
                 <div class="nav-collapse sidebar-nav">
                     <ul class="nav nav-tabs nav-stacked main-menu">
-                        <li><a href="index.html"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-                        <li><a href="messages.html"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
-                        <li><a href="tasks.html"><i class="icon-tasks"></i><span class="hidden-tablet"> Tasks</span></a></li>
-                        <li><a href="ui.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> UI Features</span></a></li>
-                        <li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li>
-                        <li>
-                            <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Dropdown</span><span class="label label-important"> 3 </span></a>
-                            <ul>
-                                <li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 1</span></a></li>
-                                <li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 2</span></a></li>
-                                <li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li>
-                            </ul>
-                        </li>
-                        <li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
+                        <li><a href="@Url.Action("List","Admins")"><i class="icon-bar-chart"></i><span class="hidden-tablet"> 管理员列表</span></a></li>
+                        <li class="add_admin"><a href="@Url.Action("Add","Admins")" onclick="return false"><i class="icon-envelope"></i><span class="hidden-tablet"> 添加管理员</span></a></li>
+                        <li><a href="@Url.Action("index","Board")"><i class="icon-tasks"></i><span class="hidden-tablet"> 栏目</span></a></li>
+                        <li><a href="@Url.Action("index","Product")"><i class="icon-eye-open"></i><span class="hidden-tablet"> 商品</span></a></li>
+                        @*<li><a href="@Url.Action("index","Types")"><i class="icon-dashboard"></i><span class="hidden-tablet"> 型号</span></a></li>
+                        <li><a href="@Url.Action("index","Property")"><i class="icon-edit"></i><span class="hidden-tablet"> 属性</span></a></li>*@
+                        @*<li>
+            <a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Dropdown</span><span class="label label-important"> 3 </span></a>
+            <ul>
+                <li><a class="submenu" href="submenu.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 1</span></a></li>
+                <li><a class="submenu" href="submenu2.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 2</span></a></li>
+                <li><a class="submenu" href="submenu3.html"><i class="icon-file-alt"></i><span class="hidden-tablet"> Sub Menu 3</span></a></li>
+            </ul>
+        </li>*@
+
                         <li><a href="chart.html"><i class="icon-list-alt"></i><span class="hidden-tablet"> Charts</span></a></li>
                         <li><a href="typography.html"><i class="icon-font"></i><span class="hidden-tablet"> Typography</span></a></li>
                         <li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
@@ -342,6 +352,8 @@
             <!-- end: Main Menu -->
             <!-- start: Content -->
             <div id="content" class="span10">
+
+
                 <ul class="breadcrumb">
                     <li>
                         <i class="icon-home"></i>
@@ -350,10 +362,11 @@
                     </li>
                     <li><a href="#">Tables</a></li>
                 </ul>
+
                 <div class="row-fluid sortable">
                     <div class="box span12">
                         <div class="box-header" data-original-title>
-                            <h2><i class="halflings-icon user"></i><span class="break"></span>Members</h2>
+                            <h2><i class="halflings-icon user"></i><span class="break"></span>@ViewBag.Title</h2>
                             <div class="box-icon">
                                 <a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
                                 <a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -361,15 +374,22 @@
                             </div>
                         </div>
                         <div class="box-content">
+
                             @RenderBody()
+
                         </div>
                     </div><!--/span-->
+
                 </div><!--/row-->
-            </div><!--/span-->
-        </div><!--/row-->
-    </div><!--/.fluid-container-->
-    <!-- end: Content -->
-    @*模态框*@
+
+
+
+
+            </div><!--/.fluid-container-->
+            <!-- end: Content -->
+        </div><!--/#content.span10-->
+    </div><!--/fluid-row-->
+
     <div class="modal hide fade" id="myModal">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">×</button>
@@ -383,51 +403,84 @@
             <a href="#" class="btn btn-primary">Save changes</a>
         </div>
     </div>
+
     <div class="clearfix"></div>
+
     <footer>
+
         <p>
             <span style="text-align:left;float:left">&copy; 2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/" alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
+
         </p>
+
     </footer>
+
     <!-- start: JavaScript-->
+
     <script src="~/Content/media/js/jquery.js"></script>
+
+    <script src="/content/js/jquery-migrate-1.0.0.min.js"></script>
+
+    @*<script src="/content/js/jquery-ui-1.10.0.custom.min.js"></script>*@
+
+    <script src="/content/js/jquery.ui.touch-punch.js"></script>
+
+    <script src="/content/js/modernizr.js"></script>
+
+    <script src="/content/js/bootstrap.min.js"></script>
+
+    <script src="/content/js/jquery.cookie.js"></script>
+
+    <script src='/content/js/fullcalendar.min.js'></script>
+
+    @*<script src='/content/js/jquery.dataTables.min.js'></script>*@
     <script src="~/Content/media/js/jquery.dataTables.js"></script>
-    <script src="~/Content/media/js/dataTables.bootstrap.js"></script>
-    <link href="~/Content/media/css/jquery.dataTables.css" rel="stylesheet" />
-    <script src="/Content/js/jquery-1.9.1.min.js"></script>
-    <script src="/Content/js/jquery-migrate-1.0.0.min.js"></script>
-    <script src="/Content/js/jquery-ui-1.10.0.custom.min.js"></script>
-    <script src="/Content/js/jquery.ui.touch-punch.js"></script>
-    <script src="/Content/js/modernizr.js"></script>
-    <script src="/Content/js/bootstrap.min.js"></script>
-    <script src="/Content/js/jquery.cookie.js"></script>
-    <script src='/Content/js/fullcalendar.min.js'></script>
-    <script src="~/Content/media/js/jquery.dataTables.js"></script>
-    <script src="~/Content/media/js/jquery.dataTables.min.js"></script>
-    <script src="/Content/js/excanvas.js"></script>
-    <script src="/Content/js/jquery.flot.js"></script>
-    <script src="/Content/js/jquery.flot.pie.js"></script>
-    <script src="/Content/js/jquery.flot.stack.js"></script>
-    <script src="/Content/js/jquery.flot.resize.min.js"></script>
-    <script src="/Content/js/jquery.chosen.min.js"></script>
-    <script src="/Content/js/jquery.uniform.min.js"></script>
-    <script src="/Content/js/jquery.cleditor.min.js"></script>
-    <script src="/Content/js/jquery.noty.js"></script>
-    <script src="/Content/js/jquery.elfinder.min.js"></script>
-    <script src="/Content/js/jquery.raty.min.js"></script>
-    <script src="/Content/js/jquery.iphone.toggle.js"></script>
-    <script src="/Content/js/jquery.uploadify-3.1.min.js"></script>
-    <script src="/Content/js/jquery.gritter.min.js"></script>
-    <script src="/Content/js/jquery.imagesloaded.js"></script>
-    <script src="/Content/js/jquery.masonry.min.js"></script>
-    <script src="/Content/js/jquery.knob.modified.js"></script>
-    <script src="/Content/js/jquery.sparkline.min.js"></script>
-    <script src="/Content/js/counter.js"></script>
-    <script src="/Content/js/custom.js"></script>
-    <link href="~/Content/layui/css/layui.css" rel="stylesheet" />
-    <script src="~/Content/layui/layui.js"></script>
-    <script src="~/Content/js/tools.js"></script>
+
+
+    <script src="/content/js/excanvas.js"></script>
+    <script src="/content/js/jquery.flot.js"></script>
+    <script src="/content/js/jquery.flot.pie.js"></script>
+    <script src="/content/js/jquery.flot.stack.js"></script>
+    <script src="/content/js/jquery.flot.resize.min.js"></script>
+
+    <script src="/content/js/jquery.chosen.min.js"></script>
+
+    <script src="/content/js/jquery.uniform.min.js"></script>
+
+    <script src="/content/js/jquery.cleditor.min.js"></script>
+
+    <script src="/content/js/jquery.noty.js"></script>
+
+    <script src="/content/js/jquery.elfinder.min.js"></script>
+
+    <script src="/content/js/jquery.raty.min.js"></script>
+
+    <script src="/content/js/jquery.iphone.toggle.js"></script>
+
+    <script src="/content/js/jquery.uploadify-3.1.min.js"></script>
+
+    <script src="/content/js/jquery.gritter.min.js"></script>
+
+    <script src="/content/js/jquery.imagesloaded.js"></script>
+
+    <script src="/content/js/jquery.masonry.min.js"></script>
+
+    <script src="/content/js/jquery.knob.modified.js"></script>
+
+    <script src="/content/js/jquery.sparkline.min.js"></script>
+
+    <script src="/content/js/counter.js"></script>
+
+    @*<script src="/content/js/retina.js"></script>*@
+
+    @*<script src="/content/js/custom.js"></script>*@
     <!-- end: JavaScript-->
-    @RenderSection("scripts", required: false)
+    <script src="~/Content/layui/layui.js"></script>
+    <script src="~/Scripts/tools.js"></script>
+    <script src="~/Scripts/resize.js"></script>
+
+
+    @RenderSection("Scripts", false)
+
 </body>
 </html>

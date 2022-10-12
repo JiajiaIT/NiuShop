@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4599EE35-DE92-4EC2-8263-E5B5397525A5}</ProjectGuid>
+    <ProjectGuid>{044A2048-5E65-452B-A042-6F5BC70163A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BLL</RootNamespace>
     <AssemblyName>BLL</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -41,32 +41,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BAddress.cs" />
-    <Compile Include="BAdmins.cs" />
-    <Compile Include="BCustomer.cs" />
-    <Compile Include="BOrder.cs" />
-    <Compile Include="BOrderDetail.cs" />
-    <Compile Include="BProduct.cs" />
-    <Compile Include="BProductProperty.cs" />
-    <Compile Include="BProductType.cs" />
-    <Compile Include="BShopCart.cs" />
+    <Compile Include="B_Address.cs" />
+    <Compile Include="B_Admins.cs" />
+    <Compile Include="B_Customer.cs" />
+    <Compile Include="B_Order.cs" />
+    <Compile Include="B_OrderDetail.cs" />
+    <Compile Include="B_Product.cs" />
+    <Compile Include="B_ProductBoard.cs" />
+    <Compile Include="B_ProductProperty.cs" />
+    <Compile Include="B_ProductType.cs" />
+    <Compile Include="B_ShopCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{599ae870-3504-4430-a300-dc4a1db4b479}</Project>
+      <Project>{e8801b72-881a-460f-a8de-e619846a09b6}</Project>
       <Name>DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Factory\Factory.csproj">
-      <Project>{2d147f51-25ca-47d4-a8fa-6e959a9f1323}</Project>
+      <Project>{1d4d710b-a4b2-42e0-8a1a-8d136604aaf2}</Project>
       <Name>Factory</Name>
     </ProjectReference>
     <ProjectReference Include="..\IDAL\IDAL.csproj">
-      <Project>{b11745e6-b1af-478d-92ff-5d60435bb903}</Project>
+      <Project>{b86baa3d-5ff9-476d-afaa-58513a33ab2b}</Project>
       <Name>IDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{905b570a-812c-494f-8904-926757586efc}</Project>
+      <Project>{04ce711a-c9a3-4fe1-b817-360034238b7d}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>

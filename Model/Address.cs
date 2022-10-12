@@ -21,10 +21,10 @@ namespace Model
         public string Tel { get; set; }
         public string Phone { get; set; }
         public string AddressType { get; set; }
-        public System.DateTime CreateTime { get; set; }
-        public int CustomerID { get; set; }
+        public Nullable<System.DateTime> CreateTime { get; set; }
+        public Nullable<int> CustomerID { get; set; }
+        public string AddresssName { get; set; }
         public string Areas { get; set; }
-        public string AddressName { get; set; }
     
         public virtual Customer Customer { get; set; }
     }

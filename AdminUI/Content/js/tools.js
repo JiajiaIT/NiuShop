@@ -1,1 +1,0 @@
-﻿const APIURL = "http://localhost:55128/";
