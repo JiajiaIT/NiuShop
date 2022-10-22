@@ -56,6 +56,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -170,13 +171,20 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductPropertyController.cs" />
     <Compile Include="Controllers\ProductTypeController.cs" />
+    <Compile Include="Controllers\ShopCartController.cs" />
+    <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filter\MyAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Param_Customer.cs" />
     <Compile Include="Models\Param_Image.cs" />
     <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\View_CartInfo.cs" />
+    <Compile Include="Models\View_Detail.cs" />
     <Compile Include="Models\View_Product.cs" />
+    <Compile Include="Models\View_Products.cs" />
     <Compile Include="Models\View_Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Param_Admins.cs" />
@@ -217,7 +225,9 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

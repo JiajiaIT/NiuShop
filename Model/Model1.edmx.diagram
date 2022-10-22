@@ -22,7 +22,7 @@
         <AssociationConnector Association="Model.FK_ProductType_Product" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_ProductProperty_ProductType" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_ShopCart_ProductProperty" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.ProductBoard" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.ProductBoard" Width="1.5" PointX="0.875" PointY="0.5" />
         <EntityTypeShape EntityType="Model.Tokens" Width="1.5" PointX="5.25" PointY="19.5" />
         <AssociationConnector Association="Model.FK_Tokens_Customer" />
         <AssociationConnector Association="Model.FK_Product_ProductBoard" />

@@ -18,9 +18,6 @@ namespace Model
         public nd20002Entities()
             : base("name=nd20002Entities")
         {
-            //解决序列化时导航属性循环依赖的问题
-            this.Configuration.LazyLoadingEnabled = false;
-            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

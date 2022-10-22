@@ -51,6 +51,7 @@
     <Compile Include="B_ProductProperty.cs" />
     <Compile Include="B_ProductType.cs" />
     <Compile Include="B_ShopCart.cs" />
+    <Compile Include="B_Tokens.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

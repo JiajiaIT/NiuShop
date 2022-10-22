@@ -1,4 +1,5 @@
-﻿using System;
+﻿using API.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,8 +14,56 @@ namespace API.Controllers
     {
         /*
          登录（分析业务需求--token）
-         注册
 
          */
+
+        //注册
+        [HttpPost]
+        [Route("Reg")]
+        public IHttpActionResult Reg(Param_Customer c)
+        {
+            var customer = new BLL.B_Customer();
+            if (customer.GetAll().Where(x => x.CustomerName == c.Account).Count() > 0)
+            {
+                return Ok(new Result<string>
+                {
+                    Code = 500,
+                    Msg = "当前用户已存在"
+                });
+            }
+            else
+            {
+                customer.Add(new Model.Customer
+                {
+                    CustomerName = c.Account,
+                    CustomerPWD = c.Password
+                });
+                return Ok(new Result());
+            }
+        }
+        [HttpPost]
+        [Route("Login")]
+        public IHttpActionResult Login(Param_Customer c)
+        {
+            string token = new BLL.B_Customer().Login(c.Account, c.Password);
+            if (token == "0")
+            {
+                return Ok(new Result
+                {
+                    Code = 404,
+                    Msg = "用户名或密码不正确"
+                });
+            }
+            else
+            {
+                return Ok(new Result<string>
+                {
+                    Data = token
+                });
+            }
+
+        }
+
+
     }
 }
