@@ -1,0 +1,47 @@
+﻿@model List<AdminUI.Models.Board>
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="Power">设置栏目</label>
+        <div class="controls">
+            <select id="BoardID">
+                @foreach (var item in Model)
+                {
+                    <option value="@item.BoardID">@item.BoardNameCN (@item.BoardNameEN)</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="ProductName">产品名称</label>
+        <div class="controls">
+            <input type="text" id="ProductName" placeholder="此处填写名称..." value="" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+    <label class="control-label" for="Cover">设置封面</label>
+    <div class="controls">
+        <input type="file" id="Cover" placeholder="请选择封面图片..." value="" autocomplete="off">
+    </div>
+</div>
+    <div class="control-group">
+        <label class="control-label" for="Description">产品描述</label>
+        <div class="controls">
+            <textarea id="Description" placeholder="此处填写描述..."></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="Postage">邮费</label>
+        <div class="controls">
+            <input type="number" id="Postage" min="10" value="100" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="IsOnline">是否售卖</label>
+        <div class="controls">
+            <input type="checkbox" id="IsOnline" checked="checked">
+        </div>
+    </div>
+
+</form>
+
+

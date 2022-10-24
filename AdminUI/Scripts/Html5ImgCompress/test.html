@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="file" id="f1">
+		<img src="" alt="" id="mm">
+	</body>
+</html>
+<script type="text/javascript">
+	
+document.write(new Date());
+
+	window.onload = function() {
+		document.querySelector("#f1").onchange = function(e) {
+	
+			let fileReader=new FileReader();
+			fileReader.readAsDataURL(e.target.files[0]);
+			fileReader.onload=function(e)
+			{
+			
+				document.querySelector("#mm").src=e.target.result;
+				console.log(e);
+			}
+		};
+	};
+	
+</script>

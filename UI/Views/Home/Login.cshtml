@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<section class="content">
+    <article class="c-login">
+        <form method="post" action="/login" role="form" id="login_form">
+            <span class="niu-form-title">用户登录</span>
+            <input type="hidden" name="_csrf" value="">
+            <span class="niu-input niu-input-large niu-input-account">
+                <i></i><input type="text" id="account" name="account" placeholder="请输入手机号码/邮箱/用户名" verify="str:!" msg="手机号码格式不正确:请输入手机号" value="">
+                <div class="disabled-box disabled-box-account">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-account"></span>
+                </div>
+            </span>
+            <span class="niu-input niu-input-large niu-input-pwd">
+                <i></i>
+                <input type="password" id="password" name="password" placeholder="请输入密码" verify="numandstr:!" msg="密码格式不正确:请输入密码" value="">
+                <div class="disabled-box disabled-box-pwd">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-pwd"></span>
+                </div>
+            </span>
+            <div class="slideVerify">
+                <input type="hidden" id="ip_tip" name="ip_tip" value="">
+            </div>
+            <div class="loginsele clearfix">
+                <input class="niu-checkbox" type="checkbox" name="remember" id="remember"><label class="niu-checkbox-lable" for='remember'>记住登录状态</label>
+
+            </div>
+        </form>
+        <button class="niu-btn niu-btn-large niu-btn-red" id="loginbtn">立即登录</button>
+        <div class="loginother clearfix">
+            <div class="logintip"><span></span></div>
+            <div class="loginforwechat"><a href="/auth/wechat"><i class="fa fa-weixin fa-block"></i></a></div>
+            <div class="loginforweibo"><a href="/auth/weibo"><i class="fa fa-weibo fa-block"></i></a></div>
+            <div class="loginforqq"><a href="/auth/qq"><i class="fa fa-qq fa-block"></i></a></div>
+            <div class="smslogin"><a href="@Url.Action("reg","home")">快速注册></a></div>
+        </div>
+    </article>
+</section>
+
+
+@section NIUCSS{
+
+    <link rel="stylesheet" href="/content/niu/static/account/widget/login/pc/login_e450d63d.css" />
+
+}
+
+@section NIUSCRIPTS{
+    <script>
+
+        $("#loginbtn").click(function () {
+            //加载层
+            var loading = layer.load(1);
+            //获取数据
+            var data = {
+                Account: $("#account").val(),
+                Password: $("#password").val(),
+                Remember:$("#remember")[0].checked?"true":"false"
+            }
+
+            //简单验证
+            if (data.Account.trim().length == 0) {
+                layer.msg("账户不能为空");
+                layer.close(loading)
+                return
+            }
+            if (data.Password.trim().length == 0) {
+                layer.msg("密码不能为空");
+                layer.close(loading)
+                return
+            }
+
+            //登录
+            $.post("@Url.Action("CheckUser","Home")", data, function (res) {
+                //先关闭加载，再提示消息
+                layer.close(loading)
+                console.log(res);
+                if (res.Code == 200) {
+                    layer.msg("登录成功")
+                    console.log(res.Data)
+
+                    //在前台保存用户的token
+                    localStorage.setItem("tokenID", res.Data);
+
+                    //var options = {
+                    //    path: "/"
+                    //};
+
+                    ////保存999天
+                    //if ($("#remember")[0].checked) {
+                    //    //持久保存token
+                    //    let aa = 60 * 60 * 24 * 1000 * 999;
+                    //    let ee = Date.now;
+                    //    options.expires = new Date(ee + aa);
+                    //};
+
+                    ////保存cookie  （需要配置才生效）
+                    //$.cookie("AUTHENCOOKIE", res.Data, options);
+
+                    //跳转拦截之前的页面
+                    var p = GetQueryString("ReturnUrl");
+                    console.log(p);
+                    if (p) {
+                        setTimeout(() => {
+                            window.location.href = p;
+                        }, 1000);
+                    } else {
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 1000);
+                    }
+
+                }
+                else {
+                    layer.msg("用户名或密码不正确");
+
+                }
+            })
+        });
+
+    </script>
+}

@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/media/css/jquery.dataTables.css" rel="stylesheet" />
+    <script src="~/Content/media/js/jquery.js"></script>
+    <script src="~/Content/media/js/jquery.dataTables.js"></script>
+</head>
+<body>
+    <div>
+
+
+        <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Extn.</th>
+
+                </tr>
+            </thead>
+         
+        </table>
+
+    </div>
+</body>
+</html>
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "ajax": {
+               "url": "http://127.0.0.1:5500/examples/ajax/data/test.txt",
+                "dataSrc": "Data",
+            },
+            "columns": [
+                { "data": "AdminID" },
+                { "data": "AdminName" },
+                { "data": "AdminPWD" },
+                { "data": "CreateTime" },
+               
+            ]
+        });
+    });
+</script>

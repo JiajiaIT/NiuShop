@@ -1,0 +1,58 @@
+﻿@model AdminUI.Models.Product
+@{ 
+    var list = ViewBag.list as List<AdminUI.Models.Board>;
+}
+
+
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="Power">设置栏目</label>
+        <div class="controls">
+            <select id="BoardID">
+                @foreach (var item in list)
+                {
+                    <option value="@item.BoardID" @(item.BoardID == Model.BoardID ? "selected" : "")>@item.BoardNameCN (@item.BoardNameEN)</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="ProductName">产品名称</label>
+        <div class="controls">
+            <input type="text" id="ProductName" placeholder="此处填写名称..." value="@Model.ProductName" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="Cover">设置封面</label>
+        <div class="controls">
+            <input type="file" id="Cover" placeholder="请选择封面图片..." value="" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="Cover">预览</label>
+        <div class="controls">
+            <a href="@(Common.tools.ImgServer+Model.Cover)" class="showImg" onclick="return showImg(this)">预览</a>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="Description">产品描述</label>
+        <div class="controls">
+            <textarea id="Description" placeholder="此处填写描述...">@Model.Description</textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="Postage">邮费</label>
+        <div class="controls">
+            <input type="number" id="Postage" min="10" value="@Model.Postage" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="IsOnline">是否售卖</label>
+        <div class="controls">
+            <input type="checkbox" id="IsOnline" @(Model.IsOnline.Value ? "checked='checked'" : "")>
+        </div>
+    </div>
+
+</form>
+
+

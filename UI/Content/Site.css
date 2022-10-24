@@ -1,0 +1,9 @@
+﻿.product_title
+{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    /* 下面这个属性设置行数 */
+    -webkit-line-clamp: 1;
+}

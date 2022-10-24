@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "注册";
+}
+
+
+
+<section class="content">
+    <article class="c-login">
+        <form method="post" action="/login" role="form" id="login_form">
+            <span class="niu-form-title">用户注册</span>
+            <input type="hidden" name="_csrf" value="">
+            <span class="niu-input niu-input-large niu-input-account">
+                <i></i><input type="text" id="account" name="account" placeholder="请输入手机号码/邮箱/用户名" autocomplete="off" value="">
+                <div class="disabled-box disabled-box-account">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-account"></span>
+                </div>
+            </span>
+
+            <span class="niu-input niu-input-large niu-input-pwd">
+                <i></i>
+                <input type="password" id="password" name="password" placeholder="请输入密码" value="">
+                <div class="disabled-box disabled-box-pwd">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-pwd"></span>
+                </div>
+            </span>
+            <span class="niu-input niu-input-large niu-input-pwd">
+                <i></i>
+                <input type="password" id="repass" name="password" placeholder="请再次输入密码" value="">
+                <div class="disabled-box disabled-box-pwd">
+                    <span class="niu-disabled-icon"></span>
+                    <span class="niu-tipmsg niu-tipmsg-pwd"></span>
+                </div>
+            </span>
+            <div class="slideVerify">
+                <input type="hidden" id="ip_tip" name="ip_tip" value="">
+            </div>
+
+        </form>
+        <button class="niu-btn niu-btn-large niu-btn-red" id="regbtn">注册账户</button>
+        <div class="loginother clearfix">
+            <div class="logintip"><span></span></div>
+            <div class="loginforwechat"><a href="/auth/wechat"><i class="fa fa-weixin fa-block"></i></a></div>
+            <div class="loginforweibo"><a href="/auth/weibo"><i class="fa fa-weibo fa-block"></i></a></div>
+            <div class="loginforqq"><a href="/auth/qq"><i class="fa fa-qq fa-block"></i></a></div>
+            <div class="smslogin"><a href="@Url.Action("login","home")">快速登录></a></div>
+        </div>
+    </article>
+</section>
+
+
+@section NIUCSS{
+
+    <link rel="stylesheet" href="/content/niu/static/account/widget/login/pc/login_e450d63d.css" />
+
+
+}
+
+@section NIUSCRIPTS{
+    <script>
+        $("#regbtn").click(function () {
+            //加载层
+            var loading = layer.load(1); 
+            //获取数据
+            var data = {
+                Account: $("#account").val(),
+                Password: $("#password").val()
+            }
+
+            //简单验证
+            if (data.Account.trim().length == 0) {
+                layer.msg("账户不能为空");
+                return
+            }
+            if (data.Password.trim().length == 0) {
+                layer.msg("密码不能为空");
+                return
+            }
+            if (data.Password != $("#repass").val()) {
+                layer.msg("两次密码输入不一致");
+                return
+            }
+
+            //注册
+            $.post(APIURL + "api/customer/reg", data, function (res) {
+                //先关闭加载，再提示消息
+                layer.close(loading)
+
+                if (res.Code == 200) {
+                    layer.msg("注册成功")
+
+                }
+                else {
+                    layer.msg("注册失败，账户已存在");
+
+                }
+            })
+        })
+    </script>
+}

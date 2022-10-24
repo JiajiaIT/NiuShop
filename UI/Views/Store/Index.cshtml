@@ -1,0 +1,98 @@
+﻿
+@model UI.Models.View_Products
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="shopStore">
+    <article class="shopStore-slider">
+        <ul>
+            <li class="gridBox-link shopStore-kv-3" data-type="link" data-target="https://store.niu.com/detail/52"></li>
+            <li class="gridBox-link shopStore-kv-4" data-type="link" data-target="https://store.niu.com/hcbattery"></li>
+        </ul>
+    </article>
+    <article class="shopStore-escooter">
+        <div class=" shopStore-escooter-title">
+            <p class="shopStore-escooter-title-b">@Model.BoardNameCN</p>
+            <p class="shopStore-escooter-title-m">@Model.BoardNameEN</p>
+        </div>
+        <div class="shopStore-escooter-products">
+            <a href="@Url.Action("detail","store",new { id =Model.ProductList[0].ProductID})" target="_blank">
+                <div class="shopStore-escooter-products-m1">
+                    <div class="shopStore-escooter-products-img">
+                        <img src="@(Common.tools.ImgServer+Model.ProductList[0].Cover)">
+                    </div>
+                    <div class="shopStore-escooter-products-des">
+                        <span class="shopStore-escooter-products-des-name">@Model.ProductList[0].ProductName</span>
+                        <span class="shopStore-escooter-products-des-price">@(Model.ProductList[0].MinPrice)起</span>
+                        <ul class="shopStore-escooter-products-des-color">
+                            <li class="icon-circle white"></li>
+                            <li class="icon-circle yellow"></li>
+                            <li class="icon-circle red"></li>
+                            <li class="icon-circle blue"></li>
+                            <li class="icon-circle gray"></li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+            <a href="@Url.Action("detail","store",new { id =Model.ProductList[1].ProductID})" target="_blank">
+                <div class="shopStore-escooter-products-n1">
+                    <div class="shopStore-escooter-products-img">
+                        <img src="@(Common.tools.ImgServer+Model.ProductList[1].Cover)">
+                    </div>
+                    <div class="shopStore-escooter-products-des">
+                        <span class="shopStore-escooter-products-des-name">@Model.ProductList[1].ProductName</span>
+                        <span class="shopStore-escooter-products-des-price">@(Model.ProductList[1].MinPrice)起</span>
+                        <ul class="shopStore-escooter-products-des-color">
+                            <li class="icon-circle white"></li>
+                            <li class="icon-circle red"></li>
+                            <li class="icon-circle blue"></li>
+                            <li class="icon-circle gray"></li>
+                        </ul>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </article>
+    <article class="shopStore-productList">
+        <div class="shopStore-productList-content">
+
+            @*商品列表模块*@
+            @{
+                Html.RenderAction("ProductByBoard", new { id = 2 });
+            }
+            @*商品列表模块*@
+            @{
+                Html.RenderAction("ProductByBoard", new { id = 3 });
+            }
+
+        </div>
+    </article>
+</section>
+
+@section NIUCSS{
+    <link rel="stylesheet" href="/content/niu/static/common/common_99ddccb1.css" />
+    <link rel="stylesheet" href="/content/niu/static/store/widget/store/list/list_c6790aea.css" />
+    <link rel="stylesheet" href="/content/niu/static/store/widget/store/list/widget/productCard1/productCard1_8611a340.css" />
+    <link rel="stylesheet" href="/content/niu/static/store/widget/store/list/widget/productCard3/productCard3_4e3ea62d.css" />
+    <link rel="stylesheet" href="/content/niu/static/store/widget/store/list/widget/productCard2/productCard2_92d4a31b.css" />
+}
+
+
+@section NIUSCRIPTS{
+    <script type="text/javascript" src="/content/niu/static/common/common_ca272729.js"></script>
+    <script src="/content/niu/static/store/widget/store/list/unslider-min.js"></script>
+    <script type="text/javascript" src="/content/niu/static/store/widget/store/list/list_e23783f9.js"></script>
+    <script>
+        $(".shopStore-slider").unslider({
+            sliderName: "shopStore-kv",
+            speed: 685,
+            autoplay: !0,
+            delay: 5e3,
+            infinite: !0,
+            arrows: !1,
+            nav: function () {
+                return ""
+            }
+        })
+    </script>}

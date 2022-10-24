@@ -1,0 +1,257 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<section id="process1" class="shoppingprocess">
+    <div class="sp-content">
+        <ul class="process">
+            <li class="select1 pbtn">1.我的购物车</li>
+            <li class="select2 pbtn">2.填写订单信息</li>
+            <li class="select3 pbtn">3.完成支付</li>
+        </ul>
+    </div>
+</section>
+<section class="shoppingcart">
+    <div class="commodity">
+        <div class="captioncentent">
+            <ul class="caption">
+                <li class="com-message">商品信息</li>
+                <li class="com-pice">单价</li>
+                <li class="com-count">数量</li>
+                <li class="com-total">小计</li>
+                <li class="com-total">操作</li>
+            </ul>
+        </div>
+
+        @* 数据行 *@
+        <div id="data">
+
+        </div>
+
+    </div>
+    <div class="comalltotal">
+        <span class="niu-btn-middle niu-btn-red goappy" id="goappy">下一步</span>
+        <span id="comalltotal">商品合计（不含运费）：<span id="total"></span>元</span>
+    </div>
+</section>
+
+
+@section NIUCSS{
+    <link rel="stylesheet" href="/content/niu/static/common/common_3b7a84e4.css" />
+    <link rel="stylesheet" href="/content/niu/static/home/page/n1_06eac47d.css" />
+    <link rel="stylesheet" href="/content/niu/static/home/widget/shopping_process_nav/shopping_process_nav_aa8a69db.css">
+    <link rel="stylesheet" href="/content/niu/static/home/widget/shopping_cart/shopping_cart_2677d8db.css">
+    <style>
+        #process1 {
+            padding-top: 100px;
+        }
+        .disabled {
+            cursor: pointer;
+            background-color: #A4A9AD;
+        }
+    </style>
+}
+
+
+@section NIUSCRIPTS{
+
+    <script>
+        var tokenID = localStorage.getItem("tokenID");
+        console.log(tokenID);
+        var tempData = null;
+
+        //初始化绑定数据
+        loadData();
+
+        //加载购物车数据
+        function loadData() {
+            //购物车页面打开时，获取当前登录用户的身份，并查询购物车中已有的商品
+            $.ajax({
+                url: APIURL + "api/shopcart/GetData?r=" + Math.random(),
+                headers: {
+                    "Authorization": "basic " + tokenID
+                },
+                type: "POST",
+                success: function (res) {
+
+                    //数据集合
+                    var data = res.Data;
+
+                    //存储用于同步的数据
+                    if (!tempData)
+                        tempData = res.Data;
+                    console.log(tempData);
+                    //每一行显示的内容
+                    var row = '';
+                    //总价
+                    var total = 0;
+
+                    //ES6语法
+                    //data.forEach(function (a) {
+                    //    console.log(a)
+                    //})
+
+                    //JQuery语法
+                    $(data).each(function (a) {
+                        total += this.Total;
+
+                        let ison = "on";
+
+                        for (var i = 0; i < tempData.length; i++) {
+                            if (tempData[i].CartId == this.CartId) {
+                                if (tempData[i].Check == false) {
+                                    ison = "";
+                                }
+                            }
+                        }
+
+
+                        row += `
+                                                        <ul class="com-item com-item-111"  data-id="${this.CartId}">
+                                                                <span  onclick="Select(this)"  class="com-select ${ison} com-select-111 icon-check" data-id="${this.CartId}" data-skuid="111"></span>
+                                                                <li class="com-pic"><img src="${IMGSERVER + this.Img}"></li>
+                                                                <li class="com-name">
+                                                                    ${this.FullName}
+                                                                </li>
+                                                                <li class="com-pice">${this.Price}元</li>
+                                                                <li class="com-count">
+                                                                    <div class="countcontrol">
+                                                                        <span class="countbtn subbtn" onclick="Update(this)">-</span>
+                                                                        <input readonly="readonly" type="text" value="${this.Quantity}" class="countinput" autocomplete="off">
+                                                                        <span class="countbtn addbtn"  onclick="Update(this)">+</span>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="com-total"><span>${this.Total}</span>元</li>
+                                                                <span class="delcom delcom-111" data-id="${this.CartId}" onclick="Delete(${this.CartId})" data-skuid="111"></span>
+                                                            </ul>`;
+                    })
+
+                    if (row.length == 0) {
+                        row = "<div style='text-algin:center'>您还没有购买任何商品</div>";
+                    }
+
+                    $("#data").html(row);
+                    $("#total").text(total);
+
+
+                },
+                error: function (err) {
+                    layer.msg("未知错误，请联系管理员")
+                }
+            });
+        }
+
+
+        //删除购物车
+        function Delete(id) {
+            layer.confirm('确认删除?', { icon: 3, title: '提示' }, function (index) {
+                layer.close(index);
+                //do something
+                //移除操作行
+                $.ajax({
+                    url: APIURL + "api/shopcart/delete/" + id,
+                    type: "get",
+                    headers: { "Authorization": "basic " + tokenID },
+                    success: function (res) {
+                        //layer.msg("删除成功");
+                        //重新加载数据
+                        if (res.Code == 200) {
+                            console.log('aaaaaaa');
+                            loadData();
+                        }
+                    }
+                });
+            });
+        }
+
+        //按钮锁
+        var onoff = true;
+
+        //数量调整
+        function Update(that) {
+            if (onoff == false)
+                return;
+
+
+            onoff = false;
+
+            //获取是-/+
+            var ctrl = $(that).hasClass('subbtn');
+            //当前购物车id
+            let id = $(that).parents(".com-item").attr("data-id");
+            //数量控件
+            let $num = $(that).parent().find(".countinput");
+            //当前数量
+            let num = parseInt($num.val());
+            //调整数量
+            if (ctrl) {
+                if (num <= 1)
+                    return;
+                $num.val(--num)
+            }
+            else
+                $num.val(++num)
+
+            ////更新操作行
+            $.ajax({
+                url: APIURL + "api/shopcart/update/" + id + "/" + num,
+                type: "get",
+                headers: { "Authorization": "basic " + tokenID },
+                success: function (res) {
+                    //layer.msg("删除成功");
+                    //重新加载数据
+                    if (res.Code == 200) {
+                        loadData();
+                    }
+                },
+                error: function (err) { },
+                complete: function () {
+                    onoff = true;
+                }
+            });
+
+        }
+
+
+        function Select(that) {
+            $(that).toggleClass("on");
+            let id = $(that).attr("data-id");
+            if ($(that).hasClass("on")) {
+                tempData.forEach(function (i) {
+                    if (i.CartId == id)
+                        i.Check = true;
+                })
+            } else {
+                tempData.forEach(function (i) {
+                    if (i.CartId == id)
+                        i.Check = false;
+                })
+            }
+
+            //console.log(tempData);
+            let sum = 0;
+            $(".com-total>span").each(function (index, el) {
+                if ($(el).parents(".com-item").find(".com-select").hasClass("on"))
+                    sum += parseFloat(el.innerText);
+            })
+            console.log(sum);
+            $("#total").text(sum);
+
+            if (!sum) {
+                $(".goappy").addClass("disabled");
+            }
+            else {
+                $(".goappy").removeClass("disabled");
+            }
+
+        }
+
+
+        $(".goappy").click(function () {
+            location.href="nextPage/1002-8-5"
+        })
+
+    </script>
+
+}

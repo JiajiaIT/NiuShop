@@ -1,0 +1,33 @@
+﻿
+@model AdminUI.Models.Board
+
+
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="BoardNameCN">中文栏目名</label>
+        <div class="controls">
+            <input type="text" id="BoardNameCN" placeholder="此处填写中文栏目名..." value="@Model.BoardNameCN" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="BoardNameEN">英文栏目名</label>
+        <div class="controls">
+            <input type="text" id="BoardNameEN" placeholder="此处填写英文..." value="@Model.BoardNameEN" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="Power">设置显示权重</label>
+        <div class="controls">
+            <select id="Power">
+                <option value="1" @(Model.Power.Value == 1 ? "selected" : "")>优先</option>
+                <option value="2" @(Model.Power.Value == 2 ? "selected" : "")>靠前</option>
+                <option value="3" @(Model.Power.Value == 3 ? "selected" : "")>正常</option>
+                <option value="4" @(Model.Power.Value == 4 ? "selected" : "")>延后</option>
+                <option value="5" @(Model.Power.Value == 5 ? "selected" : "")>末尾</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+
+

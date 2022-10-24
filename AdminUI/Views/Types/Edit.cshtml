@@ -1,0 +1,28 @@
+﻿
+
+@model AdminUI.Models.Types
+
+
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="TypeName">型号名称</label>
+        <div class="controls">
+            <input type="text" id="TypeName" placeholder="此处填写型号名称..." value="@Model.TypeName" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="Description">型号描述</label>
+        <div class="controls">
+            <textarea id="Description" placeholder="此处填写型号描述...">@Model.Description</textarea>
+        </div>
+    </div>
+
+</form>
+
+
+@if (@ViewBag.id != 0)
+{
+    <a href="@Url.Action("index","property",new  {id=ViewBag.id })">去添加</a>
+}
+
+

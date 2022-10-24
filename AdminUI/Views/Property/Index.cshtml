@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="span5">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="PropertyName">属性名称</label>
+                    <div class="controls">
+                        <input type="text" id="PropertyName" placeholder="此处填写属性名称..." value="" autocomplete="off">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="IMG">属性名称</label>
+                    <div class="controls">
+                        <input type="file" id="IMG" value="" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Price">单价</label>
+                    <div class="controls">
+                        <input type="text" id="Price" value="1" placeholder="此处填写单价..." />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Quantity">库存</label>
+                    <div class="controls">
+                        <input type="number" id="Quantity" value="100" placeholder="此处填写库存..." />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="Description">型号描述</label>
+                    <div class="controls">
+                        <textarea id="Description" placeholder="此处填写型号描述..."></textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+
+                    <div class="controls">
+                        <input class="btn btn-default" type="reset" value="清空" />
+                        <div class="btn btn-default" id="submit">提交</div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="span7">
+            <table class="table table-bordered">
+                <tr>
+                    <th>属性</th>
+                    <th>图片</th>
+                    <th>单价</th>
+                    <th>库存</th>
+                    <th>描述</th>
+                    <th>操作</th>
+                </tr>
+                <tr>
+                    <td>分期</td>
+                    <td><img class="cover" src="http://localhost:29221//cover/e371c02f.jpeg"></td>
+                    <td>25</td>
+                    <td>1000</td>
+                    <td>12期</td>
+                </tr>
+                <tr>
+                    <td>全款</td>
+                    <td><img class="cover" src="http://localhost:29221//cover/e371c02f.jpeg"></td>
+                    <td>250</td>
+                    <td>1000</td>
+                    <td>一次性付清</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/Scripts/Html5ImgCompress/js/html5ImgCompress.min.js"></script>
+    <script>
+        var imgbase64 = "";
+        //设置图片选中事件
+        $("#IMG").change(function (e) {
+            console.log(e)
+            new html5ImgCompress(e.target.files[0], {
+                before: function (file) {
+                    console.log(file)
+                },
+                done: function (file, base64) {
+                    //$("#m1").attr("src", base64)
+                    //$("#t1").val(base64);
+                    console.log(base64.length);
+                    imgbase64 = base64;
+                }
+            });
+        })
+
+        //加载已有属性
+        function GetAllProperty() {
+            let typeid = "@ViewBag.typeid";
+            $.get("/property/GetPropertyByTypeID/" + typeid, function (res) {
+                let row = "";
+                //es6遍历集合
+                res.forEach(function (r) {
+
+                    row += ` <tr>
+                    <td>${r.PropertyName}</td>
+                    <td><img class="pp" style="width:60px" src="${IMGSERVER+r.IMG}"></td>
+                    <td>${r.Price}</td>
+                    <td>${r.Quantity}</td>
+                    <td>${r.Description}</td>
+                    <td><div class="btn" onclick="del(${r.PropertyID})">删除</div></td>
+                </tr>`;
+
+                });
+
+                $(".table tr:gt(0)").remove();
+
+                if (row == "")
+                    $(".table").append("<tr><td colspan='6' style='text-align:center'>暂无数据</td></tr>");
+                else
+                    $(".table").append(row);
+            });
+        }
+        //初始化显示
+        GetAllProperty()
+
+        //添加
+        $("#submit").click(function () {
+            let param = {
+                PropertyName: $("#PropertyName").val(),
+                IMG: imgbase64,
+                Price: parseFloat($("#Price").val()),
+                Quantity: $("#Quantity").val(),
+                Description: $("#Description").val(),
+                CreateTIme: new Date(),
+                TypeID:"@ViewBag.typeid"
+            }
+            console.log(param);
+            if (param.PropertyName.trim().length == 0) {
+                layer.msg("必须填写属性名");
+                return;
+            }
+
+            if (imgbase64=="") {
+                layer.msg("必须上传展示图片");
+                return;
+            }
+
+            if (param.Price<=0) {
+                layer.msg("价格必须大于0元");
+                return;
+            }
+
+
+
+
+            //提交添加
+            $.post(APIURL + "api/property/Add", param, function (res) {
+                layer.msg(res.Msg);
+                GetAllProperty()
+            })
+        })
+
+        //删除
+        function del(id) {
+
+            layer.confirm('是否删除?', { icon: 3, title: '提示' }, function (index) {
+                //do something
+                $.get(APIURL + "api/property/Delete/" + id, function (res) {
+                    layer.msg(res.Msg);
+                    GetAllProperty()
+                })
+                layer.close(index);
+            });
+
+
+        }
+
+    </script>
+}

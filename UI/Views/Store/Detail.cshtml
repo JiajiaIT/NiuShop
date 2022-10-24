@@ -1,0 +1,224 @@
+﻿@model UI.Models.View_Detail
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<form action="@Url.Action("Add","ShoppingCart",new {id=ViewBag.id })" onsubmit="return isCheck()" method="post">
+
+    <input type="hidden" name="ProperID" id="ProperID" value="" />
+
+    <section class="storeDetail container">
+        <div class="storeDetail-intro row product_img">
+            <article class="storeDetail-intro-view J_bigImgBlock col-md-6">
+
+
+                <article class="storeDetail-intro-view J_bigImgBlock">
+                    <div class="storeDetail-intro-view-bigImg">
+                        <ul>
+                            @foreach (var item in Model.PPList)
+                            {
+                                <li><img src="@(Common.tools.ImgServer+item.IMG)" alt="" /></li>
+                            }
+
+                        </ul>
+                    </div>
+                </article>
+
+
+            </article>
+            <article class="storeDetail-intro-options product_detail  col-md-6">
+                <p class="name" id="productName">@Model.ProductName</p>
+                <div class="countBox">
+                    <div class="selectOption clearfix">
+                        <p class="optionTit">价格</p>
+                        <dl class="countBox-price clearfix">
+                            @foreach (var item in Model.PPList)
+                            {
+                                <dd class="price">@string.Format("{0:c}", item.Price)</dd>
+                            }
+                        </dl>
+                    </div>
+
+                    <div class="selectOption clearfix js-option  js-option-master">
+                        <p class="optionTit">@Model.TypeName</p>
+                        <dl class="optionBorder clearfix">
+                            @foreach (var item in Model.PPList)
+                            {
+                                <dd data-value="@item.PropertyID" class="optionList">@item.PropertyName</dd>
+                            }
+
+                        </dl>
+                    </div>
+
+
+                    <div class="selectNum clearfix selectOption">
+                        <p class="selectNumTit">数量</p>
+                        <div class="numBox">
+                            <span class="subtract">-</span>
+                            <input class="showNum" name="Quantity" type="text" value="1" />
+                            <span class="addNum">+</span>
+                        </div>
+                    </div>
+                    <br />
+                    <div class=" selectNum clearfix selectOption">
+                        <p class="selectNumTit">库存</p>
+                        <div class="numBox">
+                            @foreach (var item in Model.PPList)
+                            {
+                                <input class="Inventory" type="text" disabled value="@item.Quantity" />
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+                <button class="joinCarBtn " style="border:0px">
+                    <span class="icon-cart"></span>加入购物车
+                </button>
+                <div class="storeDetail-intro-options-tips">
+
+                    <p class="tips-title">全场配件满499元包邮。</p>
+
+
+                    <p>客服电话400-6388-666，周一至周日6:00-21:00</p>
+                    <p>(仅收市话费)。</p>
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+
+</form>
+
+<div id="details">
+    <div class="miniNavBorder-innter">
+        <div class="miniNavBorder nav nav-tabs" id="miniNavBorder">
+            <ul class="miniNav clearfix">
+
+                <li class="miniNavList active"><a href="#A" role="tab">商品介绍</a></li>
+
+                <li class="miniNavList"><a href="#B" role="tab">详细参数</a></li>
+
+                <li class="miniNavList"><a href="#C" role="tab">售后政策</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+@section NIUCSS{
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Niu/detail/details.css" rel="stylesheet" />
+    <style>
+
+        .product_img ul li:not(:first-child) {
+            display: none;
+        }
+
+        .countBox-price dd:not(:first-child) {
+            display: none;
+        }
+
+        .Inventory:not(:first-child) {
+            display: none;
+        }
+    </style>
+
+}
+
+
+@section NIUSCRIPTS{
+
+    <script>
+
+        var isTrue = true;
+
+        //选择商品的不同属性值
+        $(".optionList").click(function () {
+
+            //设置被选中效果
+            $(".optionList").removeClass("active");
+            $(this).addClass("active");
+
+            //获取当前点击的元素，在可点击的集合中的索引
+            var index = $(".optionList").index(this);
+
+            //保存要提交的属性id
+            $("#ProperID").val($(this).attr("data-value"));
+
+            //显示对应索引的图片
+            $(".product_img ul li").hide();
+            $(".product_img ul li").eq(index).show();
+
+            //显示对应价格
+            $(".countBox-price dd").hide();
+            $(".countBox-price dd").eq(index).show();
+
+            //显示对应库存
+            $(".Inventory").hide();
+            $(".Inventory").eq(index).show();
+
+            //根据库存调整添加购物车按钮的样式
+            //如果没有库存，则让按钮显示“已售罄”
+            if ($(".Inventory").eq(index).val() == 0) {
+                $(".joinCarBtn").html('商品已售罄')
+                $(".joinCarBtn ").addClass("disabled")
+            }
+            else {
+                $(".joinCarBtn").html('<span class="icon-cart"></span>加入购物车')
+                $(".joinCarBtn ").removeClass("disabled")
+            }
+            isTrue = true;
+            //移除空添加购物车提示
+            $(".joinCarBtn").unbind("click");
+            ///添加空购物车提示
+            $(".joinCarBtn.disabled").click(function () {
+                layer.msg("商品已售罄，下次请早点来！")
+                isTrue = false;
+            })
+
+        });
+
+        //初始化选中第一项
+        $(".optionList").eq(0).click();
+
+        //减少
+        $(".subtract").click(function () {
+            var num = $(".showNum").val();
+            if (num <= 1) {
+                return;
+            }
+            else {
+                $(".showNum").val(--num);
+            }
+
+        });
+        //增加
+        $(".addNum").click(function () {
+            var num = parseInt($(".showNum").val());
+            var count = parseInt($('.Inventory[style$="block;"]').val());
+
+            if (num >= count) {
+                return
+            }
+
+            $(".showNum").val(++num);
+        });
+
+        function isCheck() {
+            return isTrue;
+        }
+
+    </script>
+
+}

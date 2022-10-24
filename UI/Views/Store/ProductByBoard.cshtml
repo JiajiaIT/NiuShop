@@ -1,0 +1,22 @@
+﻿
+@model UI.Models.View_Products
+<div class="shopStore-productList-categoryTitle">
+    <span class="shopStore-productList-title1">@Model.BoardNameCN</span><span class="shopStore-productList-title2"> @Model.BoardNameEN</span>
+</div>
+<div class="shopStore-productList-category">
+    @foreach (var item in Model.ProductList)
+    {
+        <a href="@Url.Action("detail","store",new { id =item.ProductID})" target="_blank">
+            <div class="widget-productCard1">
+                <div class="widget-productCard1-img">
+                    <img src="@(Common.tools.ImgServer+item.Cover)">
+                </div>
+                <div class="widget-productCard1-des">
+                    <p class="widget-productCard1-desL product_title">@item.ProductName</p>
+                    <p class="widget-productCard1-desM">@item.Description </p>
+                    <span>@(item.MinPrice==item.MaxPrice?string.Format("{0:c}", item.MinPrice):string.Format("{0:c}~{1}", item.MinPrice,item.MaxPrice))</span>
+                </div>
+            </div>
+        </a>
+    }
+</div>

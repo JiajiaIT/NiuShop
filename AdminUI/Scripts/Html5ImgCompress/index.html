@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/html5ImgCompress.min.js"></script>
+	</head>
+
+	<body>
+
+		<form action="#">
+			<img src="" alt="" id="m1" />
+			<input type="file" id="filename" />
+			<textarea rows="10" id="t1"></textarea>
+
+		</form>
+
+	</body>
+
+</html>
+
+<!-- END 模板 -->
+<script>
+	$(function() {
+		$("#filename").change(function(e) {
+			console.log(e)
+			    new html5ImgCompress(e.target.files[0], {
+				before: function(file) {
+					console.log(file)
+				},
+				done: function(file, base64) {
+					$("#m1").attr("src", base64)
+					$("#t1").val(base64);
+					console.log(base64.length);
+				}
+			});
+		})
+	})
+</script>

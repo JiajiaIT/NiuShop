@@ -1,0 +1,25 @@
+﻿@model AdminUI.Models.Admins
+
+
+<form class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="username">用户名</label>
+        <div class="controls">
+            <input type="text" id="username" placeholder="此处填写用户名..." value="@Model.AdminName" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="password">密码</label>
+        <div class="controls">
+            <input type="password" id="password" placeholder="此处填写密码..." value="@Model.AdminPWD">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="repass">确认密码</label>
+        <div class="controls">
+            <input type="password" id="repass" placeholder="此处确认密码..." value="@Model.AdminPWD">
+        </div>
+    </div>
+</form>
+
+
