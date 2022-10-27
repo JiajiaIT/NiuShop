@@ -370,13 +370,13 @@
 	top: 5px
 }
 
-.shopping-address .confirm-content .addressbox .addressitem.onselect {
-	background: #f0efee url(images/right_296b5527.png) no-repeat right bottom;
-	background: #f0efee linear-gradient(transparent, transparent), url(images/red_f34811d1.svg)
-}
+    .shopping-address .confirm-content .addressbox .addressitem.onselect {
+        background: #f0efee url(/content/src/img/right_296b5527.png) no-repeat right bottom !important ;
+        background: #f0efee linear-gradient(transparent, transparent), url(images/red_f34811d1.svg);
+    }
 
 .shopping-address .confirm-content .addressbox .addressitem.onselect .onselect {
-	background-color: red
+    background-color: red
 }
 
 .shopping-address .confirm-content .addressbox .addaddressitem {

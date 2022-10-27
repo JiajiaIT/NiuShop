@@ -5,6 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using UI.Models;
 
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
+using System.Text;
+
 namespace UI.Controllers
 {
     //授权验证
@@ -51,5 +56,68 @@ namespace UI.Controllers
         {
             return RedirectToAction("detail", "store", new { id = id });
         }
+
+
+        //确认购买商品，显示订单信息
+        public ActionResult Confirm()
+        {
+            string[] list = null;
+
+            string ids = HttpContext.Request.Form["ids"];
+
+            if (string.IsNullOrEmpty(ids))
+            {
+                if (Session["cartlist"] == null)
+                {
+                    return RedirectToAction("index");
+                }
+                else
+                {
+                    list = (string[])Session["cartlist"];
+                }
+            }
+            else
+            {
+                list = ids.Substring(0, ids.Length - 1).Split('-');
+                Session["cartlist"] = list;
+            }
+
+            var data = Common.HttpHelper.HttpPost<Result<List<View_CartInfo>>>(Common.tools.ServerAPI + "api/shopcart/GetData", "post", null, true).Data;
+
+            List<View_CartInfo> info = new List<View_CartInfo>();
+            foreach (var item in data)
+            {
+                if (list.Contains(item.CartId.ToString()))
+                {
+                    info.Add(item);
+                }
+            }
+
+            ViewBag.info = info;
+
+            return View();
+        }
+
+        public ActionResult AddressBox()
+        {
+            var data = Common.HttpHelper.HttpGet<Result<List<View_Address>>>(Common.tools.ServerAPI + "api/customer/GetAddress/" + User.Identity.Name, "get").Data;
+            ViewBag.addresses = data;
+            return PartialView();
+        }
+
+
+        public ActionResult EditAddress(int? id)
+        {
+            //没值
+            if (!id.HasValue)
+                return PartialView(new View_Address());
+            else//有值
+            {
+                var data = Common.HttpHelper.HttpGet<Result<View_Address>>(Common.tools.ServerAPI + "api/address/find/" + id.Value, "get").Data ?? new View_Address();
+                return PartialView(data);
+            }
+        }
+
+
     }
 }

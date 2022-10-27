@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace API.Controllers
@@ -61,7 +62,17 @@ namespace API.Controllers
                     Data = token
                 });
             }
+        }
 
+        //[Filter.MyAuth]
+        [HttpGet]
+        [Route("GetAddress/{TokenID}")]
+        public IHttpActionResult GetAddress(string TokenID)
+        {
+            return Ok(new Result<List<Model.Address>>()
+            {
+                Data = new BLL.B_Address().GetAddress(TokenID)
+            });
         }
 
 

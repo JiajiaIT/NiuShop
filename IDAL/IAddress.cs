@@ -10,5 +10,7 @@ namespace IDAL
     public interface IAddress:IBase<Address>
     {
         //可以在此添加更多需求
+
+        List<Address> GetAddress(string token);
     }
 }

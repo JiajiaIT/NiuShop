@@ -25,17 +25,3 @@ D:\天翼云盘同步盘\17762579921\代码试验\NiuStore\Model\obj\Debug\Model
 D:\天翼云盘同步盘\17762579921\代码试验\NiuStore\Model\obj\Debug\Model.dll
 D:\天翼云盘同步盘\17762579921\代码试验\NiuStore\Model\obj\Debug\Model.pdb
 D:\天翼云盘同步盘\17762579921\代码试验\NiuStore\Model\obj\Debug\Model.csprojAssemblyReference.cache
-F:\NiuShop\Model\bin\Debug\Model.dll.config
-F:\NiuShop\Model\bin\Debug\Model.dll
-F:\NiuShop\Model\bin\Debug\Model.pdb
-F:\NiuShop\Model\bin\Debug\EntityFramework.dll
-F:\NiuShop\Model\bin\Debug\EntityFramework.SqlServer.dll
-F:\NiuShop\Model\bin\Debug\EntityFramework.xml
-F:\NiuShop\Model\bin\Debug\EntityFramework.SqlServer.xml
-F:\NiuShop\Model\bin\Debug\zh-Hans\EntityFramework.resources.dll
-F:\NiuShop\Model\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
-F:\NiuShop\Model\obj\Debug\Model.csproj.AssemblyReference.cache
-F:\NiuShop\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
-F:\NiuShop\Model\obj\Debug\Model.csproj.CopyComplete
-F:\NiuShop\Model\obj\Debug\Model.dll
-F:\NiuShop\Model\obj\Debug\Model.pdb

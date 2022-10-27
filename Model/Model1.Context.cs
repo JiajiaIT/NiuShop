@@ -18,6 +18,8 @@ namespace Model
         public nd20002Entities()
             : base("name=nd20002Entities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

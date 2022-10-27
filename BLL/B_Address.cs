@@ -26,6 +26,11 @@ namespace BLL
             return CreateFactory.GetAddress().FindById(id);
         }
 
+        public List<Address> GetAddress(string token)
+        {
+            return CreateFactory.GetAddress().GetAddress(token);
+        }
+
         public List<Address> GetAll()
         {
             return CreateFactory.GetAddress().GetAll();

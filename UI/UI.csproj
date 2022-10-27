@@ -131,11 +131,14 @@
     <Compile Include="Models\Param_Customer.cs" />
     <Compile Include="Models\Param_ShopCart.cs" />
     <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\View_Address.cs" />
+    <Compile Include="Models\View_CartInfo.cs" />
     <Compile Include="Models\View_Detail.cs" />
     <Compile Include="Models\View_Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Citys.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -625,6 +628,8 @@
     <Content Include="Content\Niu\static\store\widget\store\list\widget\productCard1\productCard1_8611a340.css" />
     <Content Include="Content\Niu\static\store\widget\store\list\widget\productCard2\productCard2_92d4a31b.css" />
     <Content Include="Content\Niu\static\store\widget\store\list\widget\productCard3\productCard3_4e3ea62d.css" />
+    <Content Include="Content\src\img\isdefault.png" />
+    <Content Include="Content\src\img\right_296b5527.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -723,6 +728,9 @@
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\Test\B.cshtml" />
     <Content Include="Views\Test\A.cshtml" />
+    <Content Include="Views\ShoppingCart\Confirm.cshtml" />
+    <Content Include="Views\ShoppingCart\AddressBox.cshtml" />
+    <Content Include="Views\ShoppingCart\EditAddress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

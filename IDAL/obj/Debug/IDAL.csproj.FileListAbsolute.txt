@@ -24,16 +24,3 @@ D:\天翼云盘同步盘\17762579921\代码试验\NiuStore\IDAL\obj\Debug\IDAL.c
 D:\天翼云盘同步盘\17762579921\代码试验\NiuStore\IDAL\obj\Debug\IDAL.csproj.CopyComplete
 D:\天翼云盘同步盘\17762579921\代码试验\NiuStore\IDAL\obj\Debug\IDAL.dll
 D:\天翼云盘同步盘\17762579921\代码试验\NiuStore\IDAL\obj\Debug\IDAL.pdb
-F:\NiuShop\IDAL\bin\Debug\IDAL.dll
-F:\NiuShop\IDAL\bin\Debug\IDAL.pdb
-F:\NiuShop\IDAL\bin\Debug\Model.dll
-F:\NiuShop\IDAL\bin\Debug\EntityFramework.dll
-F:\NiuShop\IDAL\bin\Debug\Model.pdb
-F:\NiuShop\IDAL\bin\Debug\Model.dll.config
-F:\NiuShop\IDAL\bin\Debug\EntityFramework.xml
-F:\NiuShop\IDAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
-F:\NiuShop\IDAL\obj\Debug\IDAL.csproj.AssemblyReference.cache
-F:\NiuShop\IDAL\obj\Debug\IDAL.csproj.CoreCompileInputs.cache
-F:\NiuShop\IDAL\obj\Debug\IDAL.csproj.CopyComplete
-F:\NiuShop\IDAL\obj\Debug\IDAL.dll
-F:\NiuShop\IDAL\obj\Debug\IDAL.pdb

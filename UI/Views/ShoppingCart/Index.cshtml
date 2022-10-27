@@ -30,10 +30,13 @@
         </div>
 
     </div>
-    <div class="comalltotal">
-        <span class="niu-btn-middle niu-btn-red goappy" id="goappy">下一步</span>
-        <span id="comalltotal">商品合计（不含运费）：<span id="total"></span>元</span>
-    </div>
+    <form action="@Url.Action("confirm")" method="post">
+        <input type="hidden" name="ids" id="ids" value="" />
+        <div class="comalltotal">
+            <button class="niu-btn-middle niu-btn-red goappy" id="goappy">下一步</button>
+            <span id="comalltotal">商品合计（不含运费）：<span id="total"></span>元</span>
+        </div>
+    </form>
 </section>
 
 
@@ -46,9 +49,14 @@
         #process1 {
             padding-top: 100px;
         }
+
         .disabled {
             cursor: pointer;
             background-color: #A4A9AD;
+        }
+
+        #goappy {
+            border: 0px;
         }
     </style>
 }
@@ -60,6 +68,7 @@
         var tokenID = localStorage.getItem("tokenID");
         console.log(tokenID);
         var tempData = null;
+        var ids = "";//要购买的商品id
 
         //初始化绑定数据
         loadData();
@@ -94,7 +103,10 @@
 
                     //JQuery语法
                     $(data).each(function (a) {
-                        total += this.Total;
+                     
+
+                        //默认所有都提交
+                        ids += this.CartId + "-"
 
                         let ison = "on";
 
@@ -103,29 +115,34 @@
                                 if (tempData[i].Check == false) {
                                     ison = "";
                                 }
+                                else {
+                                    total += this.Total;
+                                }
                             }
                         }
 
-
                         row += `
-                                                        <ul class="com-item com-item-111"  data-id="${this.CartId}">
-                                                                <span  onclick="Select(this)"  class="com-select ${ison} com-select-111 icon-check" data-id="${this.CartId}" data-skuid="111"></span>
-                                                                <li class="com-pic"><img src="${IMGSERVER + this.Img}"></li>
-                                                                <li class="com-name">
-                                                                    ${this.FullName}
-                                                                </li>
-                                                                <li class="com-pice">${this.Price}元</li>
-                                                                <li class="com-count">
-                                                                    <div class="countcontrol">
-                                                                        <span class="countbtn subbtn" onclick="Update(this)">-</span>
-                                                                        <input readonly="readonly" type="text" value="${this.Quantity}" class="countinput" autocomplete="off">
-                                                                        <span class="countbtn addbtn"  onclick="Update(this)">+</span>
-                                                                    </div>
-                                                                </li>
-                                                                <li class="com-total"><span>${this.Total}</span>元</li>
-                                                                <span class="delcom delcom-111" data-id="${this.CartId}" onclick="Delete(${this.CartId})" data-skuid="111"></span>
-                                                            </ul>`;
+                                                                        <ul class="com-item com-item-111"  data-id="${this.CartId}">
+                                                                                <span  onclick="Select(this)"  class="com-select ${ison} com-select-111 icon-check" data-id="${this.CartId}" data-skuid="111"></span>
+                                                                                <li class="com-pic"><img src="${IMGSERVER + this.Img}"></li>
+                                                                                <li class="com-name">
+                                                                                    ${this.FullName}
+                                                                                </li>
+                                                                                <li class="com-pice">${this.Price}元</li>
+                                                                                <li class="com-count">
+                                                                                    <div class="countcontrol">
+                                                                                        <span class="countbtn subbtn" onclick="Update(this)">-</span>
+                                                                                        <input readonly="readonly" type="text" value="${this.Quantity}" class="countinput" autocomplete="off">
+                                                                                        <span class="countbtn addbtn"  onclick="Update(this)">+</span>
+                                                                                    </div>
+                                                                                </li>
+                                                                                <li class="com-total"><span>${this.Total}</span>元</li>
+                                                                                <span class="delcom delcom-111" data-id="${this.CartId}" onclick="Delete(${this.CartId})" data-skuid="111"></span>
+                                                                            </ul>`;
                     })
+
+                    //用于表单提交要购买的商品
+                    $("#ids").val(ids);
 
                     if (row.length == 0) {
                         row = "<div style='text-algin:center'>您还没有购买任何商品</div>";
@@ -186,12 +203,16 @@
             let num = parseInt($num.val());
             //调整数量
             if (ctrl) {
-                if (num <= 1)
+                if (num <= 1) {
+                    onoff = true;
                     return;
+                }
                 $num.val(--num)
+
             }
-            else
+            else {
                 $num.val(++num)
+            }
 
             ////更新操作行
             $.ajax({
@@ -202,7 +223,7 @@
                     //layer.msg("删除成功");
                     //重新加载数据
                     if (res.Code == 200) {
-                        loadData();
+                        loadData(); onoff = true;
                     }
                 },
                 error: function (err) { },
@@ -213,8 +234,10 @@
 
         }
 
-
+        //选中要支付的商品
         function Select(that) {
+            ids = "";
+
             $(that).toggleClass("on");
             let id = $(that).attr("data-id");
             if ($(that).hasClass("on")) {
@@ -232,10 +255,17 @@
             //console.log(tempData);
             let sum = 0;
             $(".com-total>span").each(function (index, el) {
-                if ($(el).parents(".com-item").find(".com-select").hasClass("on"))
+                if ($(el).parents(".com-item").find(".com-select").hasClass("on")) {
                     sum += parseFloat(el.innerText);
+
+                    //为传递的参数拼接所有需要支付的商品id
+                    ids += $(el).parents(".com-item").find(".com-select").attr("data-id") + "-";
+                }
             })
-            console.log(sum);
+
+            //用于表单提交的控件
+            $("#ids").val(ids);
+
             $("#total").text(sum);
 
             if (!sum) {
@@ -249,7 +279,7 @@
 
 
         $(".goappy").click(function () {
-            location.href="nextPage/1002-8-5"
+            //location.href="/confirm/"+ids
         })
 
     </script>

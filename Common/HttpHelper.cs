@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using System.Web;
 
 namespace Common
 {
@@ -37,12 +38,22 @@ namespace Common
             request.GetResponse();//通过请求获得响应
         }
 
-        public static T HttpPost<T>(string url, string meth, object p)
-        { //通过HttpWebRequest类请求WebApi资源
+        public static T HttpPost<T>(string url, string meth, object p, bool isAuth = false)
+        {
+
+
+            //通过HttpWebRequest类请求WebApi资源
             HttpWebRequest request = HttpWebRequest.Create(url) as HttpWebRequest;
             request.Method = meth;  //设置请求方式
             request.Accept = "*/*";  //设置HTTP标头的值
             request.ContentType = "application/json";//设置内容格式
+            //适用于验证的请求
+            if (isAuth)
+            {
+                WebHeaderCollection whc = new WebHeaderCollection();
+                whc.Add("Authorization", "basic " + HttpContext.Current.User.Identity.Name);
+                request.Headers = whc;
+            }
             var json = JsonConvert.SerializeObject(p); //将对象数据转换成JSON格式（反序列化）
             byte[] B = Encoding.UTF8.GetBytes(json);//将JSON格式数据转换成网页可读取的2进制格式
             request.GetRequestStream().Write(B, 0, B.Length);//通过响应获得响应的流，并写入数据
