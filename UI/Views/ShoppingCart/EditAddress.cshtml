@@ -1,0 +1,85 @@
+﻿@model UI.Models.View_Address
+
+@{
+
+    string province = "", city = "", area = "";
+    bool isdefault = false;
+    if (!string.IsNullOrEmpty(Model.Areas))
+    {
+        province = Model.Areas.Split(' ')[0];
+        city = Model.Areas.Split(' ')[1];
+        area = Model.Areas.Split(' ')[2];
+    }
+
+    if (Model.IsDefault.HasValue)
+    {
+        isdefault = Model.IsDefault.Value;
+    }
+}
+
+<div id="J_addaddress" class="addaddress">
+    <form id="J_subaddress" name="subaddress">
+        <div class="address-block">
+            <dl>
+                <dt>姓名*</dt>
+                <dd><input type="text" autocomplete="off" placeholder="请填写收货人姓名" id="input_fullName" name="fullName" verify="zhenname:!" msg="请输入2-15位的汉字或英文字母:请输入收货人姓名" value="@Model.AddresssName"></dd>
+                <dt>手机号*</dt>
+                <dd><input type="text" autocomplete="off" placeholder="请填写收货人手机号" id="input_mobile" name="mobile" verify="mobiletel:!" msg="请输入正确的手机号:请输入手机号" value="@Model.Phone"></dd>
+                <dt>固定电话</dt>
+                <dd><input type="text" autocomplete="off" placeholder="请填写收货人固定电话" id="input_phone" name="phone" verify="phone" msg="请输入正确的固定电话" value="@Model.Tel"></dd>
+            </dl>
+        </div>
+        <div class="address-block editaddress-m">
+            <dl>
+                <dt>所在地区*</dt>
+                <dd class="sele-area">
+                    <span id="J_province" class="address-select select-province"><input class="sele-input-province" type="text" autocomplete="off" readonly placeholder="省份/自治区" name="province_show" verify="str:!" msg="请选择省份/自治区:请选择省份/自治区" value="@province"><i></i></span>
+                    <span id="J_city" class="address-select select-city"><input class="sele-input-city" type="text" autocomplete="off" readonly placeholder="城市/地区" name="city_show" value="@city" verify="str:!" msg="请选择城市/地区:请选择城市/地区"><i></i></span>
+                    <ul class="addcon province-content"></ul>
+                    <ul class="addcon city-content"></ul>
+                </dd>
+                <dt></dt>
+                <dd class="sele-area">
+                    <span id="J_street" class="address-select select-street"><input class="sele-input-street" type="text" autocomplete="off" readonly placeholder="区/县" value="@area" name="street_show" verify="str:!" msg="请选择区/县:请选择区/县"><i></i></span>
+                    <ul class="addcon street-content"></ul>
+                </dd>
+                <dt>详细地址*</dt>
+                <dd>
+                    <input placeholder="请填写收货人详细地址" id="input_addressLine1" name="addressLine1" verify="addressline:!" msg="请正确填写详细地址,并且不能超过40个字符:请填写收货人详细地址" value="@Model.AddressInfo" />
+                </dd>
+            </dl>
+        </div>
+        <div class="address-block">
+            <dl>
+                <dt>邮政编码</dt>
+                <dd>
+                    <input type="text" autocomplete="off" placeholder="请填写邮政编码" id="input_postalCode" name="postalCode" verify="postcode" msg="请填写正确的邮政编码" value="@Model.Postcode">
+                </dd>
+                <dt>地址标签</dt>
+                <dd>
+                    <input type="text" autocomplete="off" placeholder="如“家”、“公司”" id="input_addressName" name="addressName" verify="addresstag" msg="" value="@Model.AddressType">
+                </dd>
+                <dt>设为默认</dt>
+                <dd>
+                    <input type="checkbox" autocomplete="off" id="input_isDefault" name="isDefault" value="true" @( isdefault ? "checked" : "")>
+                </dd>
+            </dl>
+        </div>
+        <div class="addressOprationBtn">
+            <span id="J_canceladdaddressbtn" class="niu-btn niu-btn-gray niu-btn-middle">取消</span>
+            <span id="J_modaddressbtn" class="niu-btn niu-btn-red niu-btn-middle modaddressbtngroup">修改地址</span>
+            <span id="J_addaddressbtn" class="niu-btn niu-btn-red niu-btn-middle addaddressbtngroup">添加地址</span>
+        </div>
+
+        <input type="hidden" id="addressid" name="addressId" value="@Model.AddressID">
+        @*   <input class="hide" id="input_country" name="country" value="CN">
+        <input class="hide" id="input_province" name="subDivision" value="">
+        <input class="hide" id="input_city" name="city" value="">
+        <input class="hide" id="input_district" name="district" value="">
+        <input class="hide" id="input_countryLocalName" name="countryLocalName" value="中国">
+        <input class="hide" id="input_provinceLocalName" name="subDivisionLocalName" value="">
+        <input class="hide" id="input_cityLocalName" name="cityLocalName" value="">
+        <input class="hide" id="input_districtLocalName" name="districtLocalName" value="">*@
+    </form>
+</div>
+

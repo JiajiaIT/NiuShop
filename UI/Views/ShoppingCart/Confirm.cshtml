@@ -1,0 +1,442 @@
+﻿
+@{
+    ViewBag.Title = "Confirm";
+    decimal sum = 0;
+}
+
+
+<section id="process2" class="shoppingprocess">
+    <div class="sp-content">
+        <ul class="process">
+            <li class="select1 pbtn">1.我的购物车</li>
+            <li class="select2 pbtn">2.填写订单信息</li>
+            <li class="select3 pbtn">3.完成支付</li>
+        </ul>
+    </div>
+</section>
+<section class="shopping-address">
+    <div class="title">
+        订单信息
+    </div>
+    <div class="confirm-content">
+        <div class="confrim-content-title">
+            <span>收货地址</span>
+
+        </div>
+
+
+        <div class="edit">
+            @{ //编辑盒子
+                Html.RenderAction("EditAddress");
+            }
+        </div>
+        <div class="box">
+            @{ //地址盒子
+                Html.RenderAction("AddressBox");
+            }
+        </div>
+
+
+        <div class="clearfix"></div>
+        <div class="confrim-content-title">支付方式</div>
+        <span class="payway">在线支付（支付宝、微信扫码）</span>
+        <div class="confrim-content-title">配送方式</div>
+        <span>整车由日日顺或顺丰物流配送 配件由顺丰快递单独配送<span class="kuaidi"></span></span>
+        @*<div class="confrim-content-title">优惠券</div>
+            <div class="confirm-coupon">
+                <div class="confirm-coupon-select">
+                    <input class="confirm-input coupon-select-input" type="text" readonly placeholder="选择优惠券" data-resCode="" data-code="" data-rate="" value="">
+                    <i></i>
+                    <div class="coupon-content">
+                        <ul class="couponlist">
+
+                            <li>无可用优惠券</li>
+
+                        </ul>
+                        <div class="couponadd">
+                            <input class="confirm-input couponinput" autocomplete="off" placeholder="请填写优惠码"> <span class="niu-btn niu-btn-small niu-btn-red checkcoupon" id="checkcoupon">添加</span>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        <hr class="line2">
+        <div class="fapiao">
+            <p>
+                <span>发票信息</span>
+                <span class="fapiaotype fapiaobtn qiyefapiao onselect" group="fapiaotype" data-taxType="2">电子</span>
+                <span class="fapiaotype fapiaobtn gerenfapiao" group="fapiaotype" data-taxType="1">普通</span>
+
+            </p>
+            <div class="taitou dianzifapiao onselect">
+                <p>
+                    <span class="fapiaoname fapiaobtn dianzi onselect" group="fapiao2" data-taxType="3">个人</span>
+                    <span class="fapiaoname fapiaobtn  putong" group="fapiao2" data-taxType="4">单位</span>
+                </p>
+            </div>
+            <p class="dianzi_des">电子发票是税局认可的有效凭证，其法律效力、基本用途及使用规定同纸质发票，如需纸质票可自行下载打印。</p>
+            <div class="taitou">发票抬头：<input id="input_taxTitle" class="fapiaotaitou confirm-input" type="text" autocomplete="off" placeholder="为了方便上牌照，请您填写真实姓名" value=""></div>
+            <p>发票内容：购买商品明细</p>
+        </div>
+    </div>
+
+</section>
+<section class="shopping-address">
+    <div class="title">
+        <div class="title_meaasge">商品信息</div>
+        <div class="title_price">单价</div>
+        <div class="title_num">数量</div>
+        <div class="title_total">小计</div>
+    </div>
+    <div class="cartBox">
+        @foreach (var item in ViewBag.info as List<UI.Models.View_CartInfo>)
+        {
+            <ul class="cartItem">
+                <li class="cartItem-img">
+                    <img src="@(Common.tools.ImgServer+item.Img)">
+                </li>
+                <li class="cartItem-name">
+                    <div class="cartItem-name-c">
+                        <p>@item.FullName</p>
+                        <p class="subhead"></p>
+                    </div>
+                </li>
+                <li class="cartItem-price">
+                    @(item.Price)元
+                </li>
+                <li class="cartItem-num">×@item.Quantity</li>
+                <li class="cartItem-totalprice">@(item.Total)元</li>
+            </ul>
+            sum += item.Total;
+        }
+
+
+        <div class="cartBox-bottom">
+            <span>共计2件商品</span>
+            <div class="total">
+                <p class="J_itemTotal">商品合计：@(sum)元</p>
+                <p class="J_shippingTotal">配送费用：100元</p>
+                <p class="J_shipping">优惠金额：0元</p>
+                <p class="yingfujine J_orderTotal" data-money="4536">费用总计：@(sum + 100)元</p>
+            </div>
+            <input type="hidden" id="shippingTotal" value="@(sum)">
+        </div>
+    </div>
+</section>
+<div class="goapply">
+    <span id="goapply" class="niu-btn niu-btn-red niu-btn-large">立即支付</span>
+</div>
+<li id="T_province" class="hide"></li>
+<li id="T_city" class="hide"></li>
+<li id="T_street" class="hide"></li>
+<div class="niu-mask"></div>
+
+
+@section NIUCSS{
+    <link rel="stylesheet" href="/content/niu/static/common/common_3b7a84e4.css" />
+    <link rel="stylesheet" href="/content/niu/static/home/page/n1_06eac47d.css" />
+    <link rel="stylesheet" href="/content/niu/static/home/widget/shopping_process_nav/shopping_process_nav_aa8a69db.css" />
+    <link rel="stylesheet" href="/content/niu/static/home/widget/shopping_confirm/shopping_confirm_4dee55b6.css" />
+    <style>
+        #process2 {
+            padding-top: 100px;
+        }
+    </style>
+}
+
+@section NIUSCRIPTS{
+    <script>
+        //初始化页面上的事件
+        initBoxEvent();
+
+        //获取所有省市区
+        function loadAreas() {
+            //获取所有数据
+            $.get("/Content/Citys.txt", null, function (res) {
+                //获取省
+                var province = JSON.parse(res).data;
+                console.log(province);
+                //遍历所有省
+                province.forEach(function (e) {
+                    $("ul.province-content").append("<li>" + e.name + "</li>");
+                })
+                //呼出省份
+                $(".sele-input-province").click(function () {
+                    $("ul.province-content").show();
+
+                    //选择省
+                    $("ul.province-content>li").click(function () {
+                        //隐藏省
+                        $("ul.province-content").hide();
+                        //清空市
+                        $("ul.city-content").empty();
+                        $(".sele-input-city").val("");
+                        $("ul.street-content").empty();
+                        $(".sele-input-street").val("");
+
+                        //显示选中的省
+                        var selectprovince = $(this).text();
+                        $(".sele-input-province").val(selectprovince);
+                        //遍历省
+                        province.forEach(function (p) {
+                            //选中省
+                            if (p.name == selectprovince) {
+                                //遍历所有市
+                                p.city.forEach(function (c) {
+                                    $("ul.city-content").append("<li>" + c.name + "</li>");
+                                })
+                                //选中市
+                                $("ul.city-content>li").click(function () {
+                                    //获取选中城市的名字
+                                    var selectcity = $(this).text();
+                                    //隐藏市
+                                    $("ul.city-content").hide();
+                                    //显示市
+                                    $(".sele-input-city").val(selectcity);
+                                    //清空区
+                                    $("ul.street-content").empty();
+                                    $("ul.street-content").hide();
+                                    $(".sele-input-street").val("");
+
+                                    //遍历指定的区
+                                    p.city.forEach(function (c) {
+                                        if (c.name == selectcity) {
+                                            c.area.forEach(function (a) {
+                                                $(".street-content").append("<li>" + a + "</li>")
+                                            })
+                                        }
+                                    })
+
+                                    //选中区
+                                    $("ul.street-content>li").click(function () {
+                                        var selectarea = $(this).text();
+                                        $(".sele-input-street").val(selectarea);
+                                        $("ul.street-content").hide();
+                                    })
+
+                                });
+                            }
+                        });
+
+                        //呼出城市
+                        $(".sele-input-city").click(function () {
+                            $("ul.city-content").show();
+                        })
+                        //呼出区
+                        $(".sele-input-street").click(function () {
+                            $("ul.street-content").show();
+                        })
+
+                    });
+                })
+
+            })
+        }
+
+        //初始化地址盒子的事件
+        function initBoxEvent(){
+
+            //删除一个地址
+            $(".deladdressbtn").click(function () {
+                var id = $(this).attr("adressid");
+
+                layer.confirm('确认删除地址吗?', { icon: 3, title: '提示' }, function (index) {
+                    //do something
+
+                    $.get(APIURL + "api/address/delete/" + id, null, function (res) {
+                        if (res.Code == 200) {
+                            //加载效果
+                            layer.load(2, { time: 1 * 1000, shade: 0.3 });
+                            loadBox();
+                        }
+                    })
+                    layer.close(index);
+                });
+
+                return false;
+            })
+
+            //显示编辑和删除
+            $(".addressitem").hover(function () {
+                $(this).find(".btngroup").show();
+            }, function () {
+                $(this).find(".btngroup").hide();
+                });
+
+            //选中地址
+            $(".isselect").click(function () {
+                $(".isselect").removeClass("onselect");
+                $(this).addClass("onselect");
+
+                if ($(".fapiaoname.fapiaobtn.onselect").text().trim() == "个人") {
+                    let name = $(this).find("#name").text().split(' ')[0];
+                    $("#input_taxTitle").val(name);
+                }
+            })
+
+            //显示添加地址
+            $("#J_additem").click(function () {
+                $("#J_addressbox").hide();
+
+                //重新获取一个新的添加地址结构
+                $.get("@Url.Action("EditAddress")", null, function (res) {
+                    $(".edit").html(res);
+                    $("#J_addaddressbtn").text("添加地址")
+                    $("#J_addaddress").show();
+                    //初始化区域
+                    loadAreas();
+                    //初始化编辑事件
+                    initEditEvent();
+                })
+            })
+
+            //编辑地址
+            $(".modaddressbtn").click(function () {
+                var id = $(this).attr("adressid");
+
+                $("#J_addressbox").hide();
+
+                 //重新获取一个编辑地址结构
+                $.get("@Url.Action("EditAddress")", { id: id}, function (res) {
+                    $(".edit").html(res);
+                    $("#J_addaddressbtn").text("编辑地址")
+                    //初始化区域
+                    loadAreas();
+                    $("#J_addaddress").show();
+                    //初始化编辑事件
+                    initEditEvent();
+                })
+                return false;
+            })
+        }
+
+        //初始化编辑事件
+        function initEditEvent() {
+            //添加/更新一个收货地址
+            $("#J_addaddressbtn").click(function () {
+
+                //判断是不是添加
+                if ($(this).text().trim() == "添加地址") {
+
+                    var data = {
+                        //AddressID:
+                        AddressInfo: $("#input_addressLine1").val(),
+                        Postcode: $("#input_postalCode").val(),
+                        IsDefault: $("#input_isDefault")[0].checked,
+                        Tel: $("#input_phone").val(),
+                        Phone: $("#input_mobile").val(),
+                        AddressType: $("#input_addressName").val(),
+                        CreateTime: new Date(),
+                        //CustomerID: localStorage.getItem("tokenID"),
+                        AddresssName: $("#input_fullName").val(),
+                        Areas: $(".sele-input-province").val() + " " + $(".sele-input-city").val() + " " + $(".sele-input-street").val()
+                    }
+                    console.log(data);
+
+                    $.post(APIURL + "api/address/add/" + localStorage.getItem("tokenID"), data, function (res) {
+                        if (res.Code == 200) {
+                            //加载效果
+                            layer.load(2, { time: 1 * 1000, shade: 0.3 });
+                            $("#J_addressbox").show();
+                            $("#J_addaddress").hide();
+                            loadBox();
+                        }
+                    })
+                }
+                else {//更新地址逻辑
+                    var data = {
+                        AddressID: $("#addressid").val(),
+                        AddressInfo: $("#input_addressLine1").val(),
+                        Postcode: $("#input_postalCode").val(),
+                        IsDefault: $("#input_isDefault")[0].checked,
+                        Tel: $("#input_phone").val(),
+                        Phone: $("#input_mobile").val(),
+                        AddressType: $("#input_addressName").val(),
+                        CreateTime: new Date(),
+                        //CustomerID: localStorage.getItem("tokenID"),
+                        AddresssName: $("#input_fullName").val(),
+                        Areas: $(".sele-input-province").val() + " " + $(".sele-input-city").val() + " " + $(".sele-input-street").val()
+                    }
+                    console.log(data);
+
+                    $.post(APIURL + "api/address/edit/" + data.AddressID, data, function (res) {
+                        if (res.Code == 200) {
+                            //加载效果
+                            layer.load(2, { time: 1 * 1000, shade: 0.3 });
+                            $("#J_addressbox").show();
+                            $("#J_addaddress").hide();
+                            loadBox();
+                        }
+                    })
+                }
+            })
+            //取消添加地址
+            $("#J_canceladdaddressbtn").click(function () {
+                $("#J_addressbox").show();
+                $("#J_addaddress").hide();
+            })
+        }
+
+
+
+        //重新加载地址盒子
+        function loadBox() {
+            $.get("@Url.Action("AddressBox")", null, function (res) {
+                $(".box").html(res);
+                initBoxEvent();
+            });
+        }
+
+        //发票类型
+        $(".fapiaotype.fapiaobtn").click(function () {
+            $(".fapiaotype.fapiaobtn").removeClass("onselect");
+            $(this).addClass("onselect")
+        })
+       //发票抬头
+        $(".fapiaoname.fapiaobtn").click(function () {
+            $(".fapiaoname.fapiaobtn").removeClass("onselect");
+            $(this).addClass("onselect")
+            if ($(this).text().trim() == "个人") {
+                let name = $(".isselect.onselect").find("#name").text().split(' ')[0];;
+                $("#input_taxTitle").val(name);
+            }
+            else {
+                $("#input_taxTitle").val("");
+            }
+        })
+
+        //设置发票抬头
+        $("#input_taxTitle").val($(".isselect.onselect").find("#name").text().split(' ')[0]);
+
+        $(".goapply").click(function () {
+
+            var $box = $(".isselect.onselect");
+            let area = $box.find("#areas").text();
+            let address = $box.find("#addressInfo").text();
+            let name = $box.find("#name").text();
+            let tel = $box.find("#tel").text();
+            let addressinfo = `${area} ${address} ${name} 联系电话 ${tel}`;
+            var data = {
+                OrderState: "未支付",
+                OrderMoney: "@sum",
+                SenDate: new Date(),
+                ReceiveDate: "",
+                AddressInfo: addressinfo,
+                InvoiceName: $("#input_taxTitle").val(),
+                InvoiceType: $(".fapiaotype.fapiaobtn.onselect").text(),
+                Postage: "100",
+                Express: "顺丰",
+                ExpressNumber: "10000",
+                CreateTime: new Date(),
+                TokenID: localStorage.getItem("tokenID"),
+                Carts: Array(@ViewBag.carts)
+            };
+
+            $.post(APIURL + "api/order/index", data, function (res) {
+                console.log(res);
+            })
+        })
+
+
+    </script>
+
+}

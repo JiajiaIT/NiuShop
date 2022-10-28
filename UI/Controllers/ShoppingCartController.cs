@@ -80,6 +80,7 @@ namespace UI.Controllers
             {
                 list = ids.Substring(0, ids.Length - 1).Split('-');
                 Session["cartlist"] = list;
+                ViewBag.carts = "1,2,3";
             }
 
             var data = Common.HttpHelper.HttpPost<Result<List<View_CartInfo>>>(Common.tools.ServerAPI + "api/shopcart/GetData", "post", null, true).Data;

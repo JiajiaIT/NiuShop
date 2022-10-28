@@ -66,6 +66,7 @@ namespace DAL
             return _db.Address.Find(id);
         }
 
+        //根据token获得用户地址集合
         public List<Address> GetAddress(string token)
         {
             var result = from t in _db.Tokens
@@ -80,6 +81,8 @@ namespace DAL
         {
             return _db.Address.ToList();
         }
+
+        //更新地址
 
         public void Update(int id, Model.Address obj)
         {

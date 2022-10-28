@@ -167,6 +167,7 @@
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductBoardController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductPropertyController.cs" />
@@ -180,6 +181,7 @@
     </Compile>
     <Compile Include="Models\Param_Customer.cs" />
     <Compile Include="Models\Param_Image.cs" />
+    <Compile Include="Models\Param_Order.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\View_CartInfo.cs" />
     <Compile Include="Models\View_Detail.cs" />

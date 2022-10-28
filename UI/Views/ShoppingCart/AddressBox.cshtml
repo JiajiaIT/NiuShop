@@ -1,0 +1,33 @@
+﻿@{
+    var list = ViewBag.addresses as List<UI.Models.View_Address>;
+}
+
+
+<div id="J_addressbox" class="addressbox">
+
+    @foreach (var item in list)
+    {
+        <div class="addressitem @(item.IsDefault.Value ? "onselect" : "") viewAdress isselect" group="address" mm="True" adressid="@item.AddressID" select="Yes" style="background: rgb(255, 255, 255);">
+            @(item.IsDefault.Value ? MvcHtmlString.Create("<img src='/Content/src/img/isdefault.png'>") : MvcHtmlString.Empty)
+            <span id="name">@item.AddresssName 收</span>
+            <hr>
+            <p id="tel">@item.Phone</p>
+            <p id="areas">@item.Areas</p>
+            <p id="addressInfo">@item.AddressInfo</p>
+            <p>
+                <input type="hidden" id="postage" value="@item.Postcode">
+            </p>
+            <div class="btngroup" style="display: none;">
+                <span class="modaddressbtn" adressid="@item.AddressID" style=""> </span>
+                <span class="deladdressbtn" adressid="@item.AddressID" style="">  </span>
+            </div>
+        </div>
+    }
+
+
+    @if (list.Count < 6)
+    {
+        <div id="J_additem" class="addressitem addaddressitem"></div>
+    }
+
+</div>
