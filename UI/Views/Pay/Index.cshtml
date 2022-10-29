@@ -1,0 +1,62 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+
+<section id="process1" class="shoppingprocess">
+    <div class="sp-content">
+        <ul class="process">
+            <li class="select2 pbtn">1.我的购物车</li>
+            <li class="select2 pbtn">2.填写订单信息</li>
+            <li class="select1 pbtn">3.完成支付</li>
+        </ul>
+    </div>
+</section>
+
+<section class="order-pay top">
+    <div class="order-status">
+        <span class="order-status-money" id="fyzj">费用总计：&#165;439.00 元</span>
+        <div class="order-status-info">
+            <span class="order-status-info-status">等待付款</span>
+
+            <p>请在<b class="time"><span>2</span>小时</b>内完成支付，否则订单会自动取消。</p>
+        </div>
+
+        <!--<div class="openCart">-->
+        <!--<span>订单详情</span><img src="icon-down.png">-->
+        <!--</div>-->
+    </div>
+
+    <div class="choose">
+        选择支付方式
+    </div>
+    <div class="order-way">
+        <span class="otherpaybtn">切换支付方式</span>
+
+        <div class="order-way-block payfor-zfbpc" dd="1106" data-channel="alipay_pc_direct" data-msg="">
+            <div class="payicon">
+                <img src="/Content/Niu/pay/zhifubao.png">
+            </div>
+            <div class="payfont">
+                <p>支付宝 网页支付</p>
+                <p class="payfont-t">登录网页版支付宝支付</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+@section NIUCSS{
+    <link href="~/Content/Niu/pay/orderPay.css" rel="stylesheet" />
+}
+
+@section NIUSCRIPTS{
+    <script>
+        let id = localStorage.getItem("orderid");
+        console.log(id);
+    </script>
+}

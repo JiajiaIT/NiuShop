@@ -15,6 +15,7 @@ namespace API.Controllers
         [Route("index")]
         public IHttpActionResult Index(Param_Order order)
         {
+            //return Ok(order);
 
             order.CreateTime = order.SenDate = DateTime.Now;
             order.CustomerID = new BLL.B_Tokens().GetCustomerIDByToken(order.TokenID);
@@ -39,6 +40,11 @@ namespace API.Controllers
             //循环添加多个详情
             foreach (var item in order.Carts)
             {
+                if (item == 0)
+                {
+                    //略过 为0的数据操作
+                    continue;
+                }
                 var Cart = new BLL.B_ShopCart().GetAll();
                 var product = new BLL.B_Product().GetAll();
                 var type = new BLL.B_ProductType().GetAll();
@@ -49,15 +55,18 @@ namespace API.Controllers
                              join pp in property on t.TypeID equals pp.TypeID
                              join c in Cart on pp.PropertyID equals c.ProperID
                              where c.Id == item
-                             select new
+                             select new //匿名类型
                              {
                                  CartId = c.Id,
-                                 FullName = p.ProductName + " " + t.TypeName + " " + pp.PropertyName,
                                  Img = pp.IMG,
                                  Price = pp.Price.Value,
                                  Quantity = c.Quantity.Value,
                                  Total = pp.Price.Value * c.Quantity.Value,
-                                 ProperID = pp.PropertyID
+                                 ProperID = pp.PropertyID,
+                                 ProductName = p.ProductName,
+                                 TypeName = t.TypeName,
+                                 PropertyName = pp.PropertyName
+
                              };
                 var od = result.First();
 
@@ -66,9 +75,9 @@ namespace API.Controllers
                     OrderID = data.OrderID,
                     CreateTime = DateTime.Now,
                     IMG = od.Img,
-                    ProductName = od.FullName.Split(' ')[0],
-                    TypeName = od.FullName.Split(' ')[1],
-                    ProperName = od.FullName.Split(' ')[2],
+                    ProductName = od.ProductName,
+                    TypeName = od.TypeName,
+                    ProperName = od.PropertyName,
                     Price = od.Price,
                     ProperID = od.ProperID,
                     Quantity = od.Quantity,
@@ -76,11 +85,24 @@ namespace API.Controllers
                 };
                 //添加订单详情
                 new BLL.B_OrderDetail().Add(detail);
+            }
 
+            //清空购物车
+            foreach (var item in order.Carts)
+            {
+                if (item == 0)
+                {
+                    //略过 为0的数据操作
+                    continue;
+                }
+                new BLL.B_ShopCart().Delete(item);
             }
 
             //返回一个订单id就可以了
-            return Ok(data.OrderID);
+            return Ok(new Result<int>
+            {
+                Data = data.OrderID
+            });
         }
     }
 }

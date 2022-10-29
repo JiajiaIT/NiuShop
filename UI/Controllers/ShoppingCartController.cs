@@ -80,7 +80,20 @@ namespace UI.Controllers
             {
                 list = ids.Substring(0, ids.Length - 1).Split('-');
                 Session["cartlist"] = list;
-                ViewBag.carts = "1,2,3";
+
+                /*
+                 注意，这里如果只买一种商品，在前台就会出现Array()识别参数为数组长度的逻辑，
+                 所以我们需要保证至少2个数据发送到前台，完成集合的转换。
+                 */
+
+                string s = "0";
+                foreach (var item in list)
+                {
+                    s += "," + item;
+                }
+
+                string c = string.Join(",", s);
+                ViewBag.carts = c;
             }
 
             var data = Common.HttpHelper.HttpPost<Result<List<View_CartInfo>>>(Common.tools.ServerAPI + "api/shopcart/GetData", "post", null, true).Data;

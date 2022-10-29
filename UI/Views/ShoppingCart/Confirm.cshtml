@@ -408,6 +408,8 @@
         $("#input_taxTitle").val($(".isselect.onselect").find("#name").text().split(' ')[0]);
 
         $(".goapply").click(function () {
+            //加载效果
+            var mask = layer.load(2, { shade: 0.3 });
 
             var $box = $(".isselect.onselect");
             let area = $box.find("#areas").text();
@@ -415,6 +417,7 @@
             let name = $box.find("#name").text();
             let tel = $box.find("#tel").text();
             let addressinfo = `${area} ${address} ${name} 联系电话 ${tel}`;
+
             var data = {
                 OrderState: "未支付",
                 OrderMoney: "@sum",
@@ -431,12 +434,18 @@
                 Carts: Array(@ViewBag.carts)
             };
 
+            console.log(data.Carts);
+
+            //拆分订单
             $.post(APIURL + "api/order/index", data, function (res) {
+                //let orderid = res.Data;
+                //localStorage.setItem("orderid", orderid);
+                //layer.close(mask);
+                //window.location.href = "/pay/index";
+
                 console.log(res);
             })
         })
-
-
     </script>
 
 }

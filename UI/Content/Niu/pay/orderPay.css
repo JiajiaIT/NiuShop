@@ -1,0 +1,677 @@
+#process1 {
+
+padding-top:100px;
+}
+
+#process1 .select1 {
+    color: #040404
+}
+
+#process2 .select2 {
+    color: #040404
+}
+
+#process3 .select3 {
+    color: #040404
+}
+
+.shoppingprocess {
+    width: 1140px;
+    height: 24px;
+    padding: 40px 0;
+    margin: 0 auto;
+    overflow: hidden
+}
+
+    .shoppingprocess .sp-content {
+        overflow: hidden;
+        width: 1140px
+    }
+
+        .shoppingprocess .sp-content .process, .shoppingprocess .sp-content .process > li {
+            margin: 0;
+            padding: 0
+        }
+
+            .shoppingprocess .sp-content .process > li {
+                float: left
+            }
+
+        .shoppingprocess .sp-content .process {
+            overflow: hidden
+        }
+
+            .shoppingprocess .sp-content .process .select2 {
+                border-left: 1px solid #979797;
+                border-right: 1px solid #979797
+            }
+
+            .shoppingprocess .sp-content .process .pbtn {
+                display: inline-block;
+                color: #a4a9ad;
+                text-align: center;
+                font-size: 14px;
+                line-height: 24px;
+                letter-spacing: .7px;
+                width: 33.33%;
+                height: 24px;
+                box-sizing: border-box
+            }
+
+
+.top {
+    border: #d1d3d3 1px solid;
+    padding-bottom: 40px;
+
+   
+}
+
+.bottom {
+    margin-bottom: 40px
+}
+
+.order-pay {
+    width: 1200px;
+    margin: 0 auto 40px;
+    clear: both;
+    position: relative;
+    border-radius: 5px
+}
+
+    .order-pay .choose {
+        margin-top: 50px;
+        margin-left: 30px;
+        font-size: 24px
+    }
+
+    .order-pay .title {
+        height: 40px;
+        background-color: #d1d3d3;
+        line-height: 40px;
+        font-size: 14px;
+        text-align: center;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        color: #5c6670
+    }
+
+        .order-pay .title .title_meaasge {
+            box-sizing: border-box;
+            width: 700px;
+            border-right: 1px solid #fff;
+            float: left;
+            text-align: left;
+            padding-left: 20px
+        }
+
+        .order-pay .title .title_price {
+            width: 200px;
+            border-right: 1px solid #fff;
+            float: left
+        }
+
+        .order-pay .title .title_num {
+            width: 97px;
+            border-right: 1px solid #fff;
+            float: left
+        }
+
+        .order-pay .title .title_total {
+            width: 190px;
+            float: left
+        }
+
+    .order-pay .order-status {
+        height: 145px;
+        position: relative;
+        background-color: #d1d3d3
+    }
+
+        .order-pay .order-status .order-status-money {
+            position: absolute;
+            right: 50px;
+            color: #df001f;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 145px
+        }
+
+        .order-pay .order-status .openCart {
+            position: absolute;
+            width: 80px;
+            height: 25px;
+            font-size: 14px;
+            bottom: 18px;
+            right: 50px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none
+        }
+
+            .order-pay .order-status .openCart span {
+                position: absolute;
+                top: 8px;
+                right: 18px
+            }
+
+            .order-pay .order-status .openCart img {
+                position: absolute;
+                top: 5px;
+                right: 0;
+                height: 15px;
+                width: 15px
+            }
+
+        .order-pay .order-status .order-status-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: url(//www.niucache.com/static/home/widget/order_pay/confirm_34c721b0.png) no-repeat 100% 100%
+        }
+
+        .order-pay .order-status .order-status-info {
+            float: left;
+            padding-left: 40px;
+            width: 850px;
+            height: 100%
+        }
+
+            .order-pay .order-status .order-status-info .order-status-info-status {
+                margin-top: 40px
+            }
+
+            .order-pay .order-status .order-status-info span {
+                display: inline-block;
+                font-size: 24px;
+                font-weight: 600
+            }
+
+            .order-pay .order-status .order-status-info .time {
+                color: #df001f;
+                font-size: 14px
+            }
+
+                .order-pay .order-status .order-status-info .time .min {
+                    font-size: 20px;
+                    margin-top: 20px
+                }
+
+                .order-pay .order-status .order-status-info .time .sec {
+                    font-size: 20px;
+                    margin-top: 20px
+                }
+
+            .order-pay .order-status .order-status-info p {
+                color: #5c6670;
+                font-size: 14px
+            }
+
+            .order-pay .order-status .order-status-info .line {
+                color: #d2d1d1;
+                border: 0;
+                border-top: 1px solid #a4a9ad;
+                margin-top: 20px
+            }
+
+    .order-pay .cartBox {
+        padding: 0 0 30px;
+        border: 1px solid #d2d1d1;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px
+    }
+
+        .order-pay .cartBox .cartItem {
+            height: 220px;
+            border-bottom: 1px solid #f0efee
+        }
+
+            .order-pay .cartBox .cartItem > li {
+                float: left;
+                list-style: none;
+                text-align: center;
+                color: #5c6670;
+                font-size: 14px
+            }
+
+            .order-pay .cartBox .cartItem .cartItem-img {
+                width: 220px;
+                height: 100%
+            }
+
+                .order-pay .cartBox .cartItem .cartItem-img img {
+                    height: 180px;
+                    width: 180px;
+                    position: relative;
+                    top: 25px;
+                    left: 40px;
+                    float: left
+                }
+
+            .order-pay .cartBox .cartItem .cartItem-price {
+                width: 201px;
+                line-height: 220px
+            }
+
+            .order-pay .cartBox .cartItem .cartItem-num {
+                width: 97px;
+                line-height: 220px
+            }
+
+            .order-pay .cartBox .cartItem .cartItem-totalprice {
+                width: 190px;
+                line-height: 220px
+            }
+
+            .order-pay .cartBox .cartItem .cartItem-name {
+                height: 100%;
+                width: 400px;
+                margin-left: 80px
+            }
+
+                .order-pay .cartBox .cartItem .cartItem-name .cartItem-name-c {
+                    height: 40px;
+                    margin-top: 88px;
+                    margin-left: 100px;
+                    text-align: left
+                }
+
+                    .order-pay .cartBox .cartItem .cartItem-name .cartItem-name-c .subhead {
+                        color: #a4a9ad;
+                        font-size: 12px
+                    }
+
+                    .order-pay .cartBox .cartItem .cartItem-name .cartItem-name-c p {
+                        line-height: 20px;
+                        font-size: 14px
+                    }
+
+            .order-pay .cartBox .cartItem .com-name-special {
+                width: 480px
+            }
+
+                .order-pay .cartBox .cartItem .com-name-special i {
+                    float: left;
+                    margin-left: 40px;
+                    margin-top: 80px;
+                    display: inline-block;
+                    width: 40px;
+                    height: 40px;
+                    background-image: url(//www.niucache.com/static/home/widget/order_pay/special-icon_6d92b6b4.png);
+                    background-image: linear-gradient(transparent,transparent),url(//www.niucache.com/static/home/widget/order_pay/special-icon_1d7a672e.svg)
+                }
+
+                .order-pay .cartBox .cartItem .com-name-special p {
+                    width: 60%;
+                    text-align: left;
+                    margin-left: 100px
+                }
+
+                .order-pay .cartBox .cartItem .com-name-special .special {
+                    margin-top: 84px;
+                    margin-bottom: 5px;
+                    color: #212121
+                }
+
+        .order-pay .cartBox .time {
+            width: 90px;
+            height: 90px;
+            border: 3px solid #df001f;
+            border-radius: 50%;
+            position: absolute;
+            left: 15px;
+            top: 55px;
+            text-align: center;
+            color: #df001f;
+            font-size: 14px;
+            line-height: 21px
+        }
+
+            .order-pay .cartBox .time .time_word {
+                color: #7f7f7f;
+                margin-top: 20px
+            }
+
+        .order-pay .cartBox .cartBox-bottom {
+            margin-left: 40px
+        }
+
+            .order-pay .cartBox .cartBox-bottom .order {
+                margin-top: 30px;
+                font-size: 18px;
+                color: #212121;
+                width: 660px;
+                display: inline-block
+            }
+
+            .order-pay .cartBox .cartBox-bottom .num {
+                display: inline-block;
+                width: 200px;
+                text-align: center
+            }
+
+            .order-pay .cartBox .cartBox-bottom .sum {
+                margin-left: 40px
+            }
+
+            .order-pay .cartBox .cartBox-bottom .address {
+                display: inline-block;
+                font-size: 14px;
+                color: #5c6670;
+                margin: 15px 0;
+                width: 660px
+            }
+
+            .order-pay .cartBox .cartBox-bottom .ship {
+                margin-left: 245px
+            }
+
+            .order-pay .cartBox .cartBox-bottom .bill {
+                font-size: 14px;
+                color: #5c6670;
+                width: 660px
+            }
+
+            .order-pay .cartBox .cartBox-bottom .total {
+                color: #df001f;
+                font-size: 16px;
+                font-weight: 600;
+                margin-top: -15px;
+                margin-left: 910px
+            }
+
+    .order-pay .order-way {
+        padding-top: 20px;
+        height: 110px;
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+    }
+
+        .order-pay .order-way .order-way-block:hover {
+            background-color: #d1d3d3
+        }
+
+        .order-pay .order-way .order-way-block {
+            width: 378px;
+            height: 110px;
+            border-radius: 15px;
+            float: left;
+            cursor: pointer;
+            position: relative;
+            background-color: #f0efee;
+            transition: all .2s ease-out;
+            -webkit-transition: all .2s ease-out
+        }
+
+            .order-pay .order-way .order-way-block .payicon {
+                height: 100%;
+                width: 80px;
+                margin: 0 30px;
+                float: left
+            }
+
+                .order-pay .order-way .order-way-block .payicon img {
+                    margin-top: 15px
+                }
+
+            .order-pay .order-way .order-way-block .payfont {
+                padding: 30px 0;
+                line-height: 25px
+            }
+
+                .order-pay .order-way .order-way-block .payfont .payfont-t {
+                    font-size: 14px;
+                    color: #8c8c8c
+                }
+
+        .order-pay .order-way .payfor-zfbm, .order-pay .order-way .payfor-wechat, .order-pay .order-way .payfor-zfbpc, .order-pay .order-way .payfor-jd {
+            margin-left: 15px
+        }
+
+            .order-pay .order-way .payfor-jd img {
+                width: 79px;
+                height: 79px
+            }
+
+        .order-pay .order-way .otherpaybtn {
+            position: absolute;
+            left: 310px;
+            top: -14px;
+            font-size: 14px;
+            cursor: pointer;
+            display: none;
+            color: #df001f
+        }
+
+        .order-pay .order-way .order-otherpay {
+            position: absolute;
+            width: 515px;
+            height: 110px;
+            left: 570px;
+            padding-left: 50px;
+            display: none
+        }
+
+            .order-pay .order-way .order-otherpay h3 {
+                margin-top: 20px;
+                text-align: center;
+                font-weight: 400
+            }
+
+            .order-pay .order-way .order-otherpay .payend {
+                text-align: center;
+                margin-left: 45px
+            }
+
+                .order-pay .order-way .order-otherpay .payend .niu-btn {
+                    width: 200px;
+                    height: 40px;
+                    float: left;
+                    margin: 0 20px 0 0
+                }
+
+    .order-pay .problem {
+        margin: 80px 0;
+        display: none
+    }
+
+        .order-pay .problem h1 {
+            font-size: 26px;
+            font-weight: 400;
+            padding: 0 50px
+        }
+
+        .order-pay .problem dl {
+            padding: 0 50px
+        }
+
+            .order-pay .problem dl dt {
+                font-size: 16px;
+                margin: 12px 0
+            }
+
+            .order-pay .problem dl dd {
+                font-size: 14px;
+                color: #8c8c8c;
+                margin-left: 20px;
+                margin-bottom: 15px
+            }
+
+.order-pay-dcode {
+    display: none;
+    width: 90px;
+    height: 90px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    position: absolute;
+    right: -140px;
+    top: 0;
+    z-index: 100;
+    background-color: #fff
+}
+
+    .order-pay-dcode .loadinggif {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        top: 50%;
+        left: 50%;
+        margin-left: -10px;
+        margin-top: -10px
+    }
+
+    .order-pay-dcode .arrow-down {
+        position: absolute;
+        bottom: -16px;
+        left: 50%;
+        margin-left: -8px;
+        display: block;
+        height: 0;
+        width: 0;
+        font-size: 0;
+        line-height: 0;
+        border-color: #bababa transparent transparent;
+        border-style: solid dashed dashed;
+        border-width: 8px
+    }
+
+        .order-pay-dcode .arrow-down i {
+            position: absolute;
+            top: -9px;
+            *top: -9px;
+            left: -8px;
+            display: block;
+            height: 0;
+            width: 0;
+            font-size: 0;
+            line-height: 0;
+            border-color: #fff transparent transparent;
+            border-style: solid dashed dashed;
+            border-width: 8px
+        }
+
+    .order-pay-dcode .arrow-up {
+        position: absolute;
+        bottom: -16px;
+        left: 50%;
+        margin-left: -8px;
+        display: block;
+        height: 0;
+        width: 0;
+        font-size: 0;
+        line-height: 0;
+        border-color: transparent transparent #666;
+        border-style: dashed dashed solid;
+        border-width: 10px
+    }
+
+        .order-pay-dcode .arrow-up i {
+            position: absolute;
+            top: -9px;
+            *top: -9px;
+            left: -10px;
+            display: block;
+            height: 0;
+            width: 0;
+            font-size: 0;
+            line-height: 0;
+            border-color: transparent transparent #fff;
+            border-style: dashed dashed solid;
+            border-width: 10px
+        }
+
+    .order-pay-dcode .arrow-left {
+        position: absolute;
+        top: 50%;
+        left: -17px;
+        margin-top: -12px;
+        display: block;
+        height: 0;
+        width: 0;
+        font-size: 0;
+        line-height: 0;
+        border-color: transparent #666 transparent transparent;
+        border-style: dashed solid dashed dashed;
+        border-width: 8px
+    }
+
+        .order-pay-dcode .arrow-left i {
+            position: absolute;
+            top: -8px;
+            *top: -7px;
+            left: -7px;
+            display: block;
+            height: 0;
+            width: 0;
+            font-size: 0;
+            line-height: 0;
+            border-color: transparent #fff transparent transparent;
+            border-style: dashed solid dashed dashed;
+            border-width: 8px
+        }
+
+    .order-pay-dcode .arrow-right {
+        position: absolute;
+        bottom: -16px;
+        left: 50%;
+        margin-left: -8px;
+        display: block;
+        height: 0;
+        width: 0;
+        font-size: 0;
+        line-height: 0;
+        border-color: transparent transparent transparent #666;
+        border-style: dashed dashed dashed solid;
+        border-width: 10px
+    }
+
+        .order-pay-dcode .arrow-right i {
+            position: absolute;
+            top: -9px;
+            *top: -9px;
+            left: -10px;
+            display: block;
+            height: 0;
+            width: 0;
+            font-size: 0;
+            line-height: 0;
+            border-color: transparent transparent transparent #fff;
+            border-style: dashed dashed dashed solid;
+            border-width: 10px
+        }
+
+.qrmask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #333;
+    opacity: .8;
+    z-index: 1000;
+    display: none
+}
+
+.largeQrcode {
+    display: none;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    padding: 50px;
+    z-index: 1000;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -200px;
+    background-color: #fff
+}
+
+    .largeQrcode .bigQrcodeContent {
+        width: 300px;
+        height: 300px
+    }

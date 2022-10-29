@@ -121,6 +121,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -316,6 +317,8 @@
     <Content Include="Content\Niu\order\images\198.jpeg" />
     <Content Include="Content\Niu\order\index.html" />
     <Content Include="Content\Niu\order\my_order_9a1ac7ef.css" />
+    <Content Include="Content\Niu\pay\orderPay.css" />
+    <Content Include="Content\Niu\pay\zhifubao.png" />
     <Content Include="Content\Niu\service\expstore\apply.html" />
     <Content Include="Content\Niu\service\expstore\apply_table.html" />
     <Content Include="Content\Niu\service\expstore\authorized.html" />
@@ -731,6 +734,7 @@
     <Content Include="Views\ShoppingCart\Confirm.cshtml" />
     <Content Include="Views\ShoppingCart\AddressBox.cshtml" />
     <Content Include="Views\ShoppingCart\EditAddress.cshtml" />
+    <Content Include="Views\Pay\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
