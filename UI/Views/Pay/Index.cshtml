@@ -56,7 +56,26 @@
 
 @section NIUSCRIPTS{
     <script>
-        let id = localStorage.getItem("orderid");
-        console.log(id);
+        let info = JSON.parse(localStorage.getItem("orderinfo"));
+        console.log(info.id, info.total);
+        $("#fyzj").text(`费用总计：¥${info.total} 元`)
+
+
+        //去支付
+        $(".payicon").click(function () {
+            //可以获取alipay提供的一个用于提交支付信息的表单字符串
+            $.get("/pay/pay/" + info.id, null, function (res) {
+
+                //console.log(res);
+
+                if (res.length == 0) {
+                    layer.msg("无法支付");
+                } else {
+                    //自动完成对支付宝的跳转
+                    $("body").append(res);
+                }
+            })
+        })
+
     </script>
 }

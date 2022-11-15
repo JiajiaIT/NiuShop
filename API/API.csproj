@@ -182,6 +182,7 @@
     <Compile Include="Models\Param_Customer.cs" />
     <Compile Include="Models\Param_Image.cs" />
     <Compile Include="Models\Param_Order.cs" />
+    <Compile Include="Models\Param_Order_Details.cs" />
     <Compile Include="Models\Result.cs" />
     <Compile Include="Models\View_CartInfo.cs" />
     <Compile Include="Models\View_Detail.cs" />

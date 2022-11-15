@@ -44,5 +44,20 @@ namespace UI.Controllers
         {
             return View();
         }
+
+        //[HttpGet]
+        public ActionResult UserStatus()
+        {
+            return PartialView();
+        }
+
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }

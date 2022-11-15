@@ -438,14 +438,19 @@
 
             //拆分订单
             $.post(APIURL + "api/order/index", data, function (res) {
-                //let orderid = res.Data;
-                //localStorage.setItem("orderid", orderid);
-                //layer.close(mask);
-                //window.location.href = "/pay/index";
+                let orderid = res.Data;
+                //存了一个需要支付的订单信息
+                let info = { id: orderid, total: "@sum" }
+                localStorage.setItem("orderinfo", JSON.stringify(info));
+                layer.close(mask);
+                //支付页面
+                window.location.href = "/pay/index";
 
                 console.log(res);
             })
         })
+
+
     </script>
 
 }

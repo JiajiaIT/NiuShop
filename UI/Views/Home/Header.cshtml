@@ -68,6 +68,14 @@
             <ul class="header-link">
                 <li class="header-link-item" id="head_menu_userstatus">
                     <a href="@Url.Action("Login","Home")"><i class="icon-profile"></i></a>
+                    <div class="collapse service-collapse" style="height:120px">
+                     
+                        @{ 
+                            Html.RenderAction("UserStatus", "Home");
+                        }
+
+
+                    </div>
                 </li>
                 <li class="header-link-item" id="head_menu_cartlist">
                     <a href="@Url.Action("Index","ShoppingCart")"><i class="icon-cart"></i></a>

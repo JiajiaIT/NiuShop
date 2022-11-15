@@ -104,5 +104,109 @@ namespace API.Controllers
                 Data = data.OrderID
             });
         }
+
+        [HttpGet]
+        [Route("Pay/{id}")]
+        public IHttpActionResult Pay(int id)
+        {
+            var data = new BLL.B_Order().FindById(id);
+
+            if (data.OrderState == "未支付")
+            {
+                data.OrderState = "已支付";
+                new BLL.B_Order().Update(id, data);
+
+                return Ok(new Result<string>()
+                {
+                    Msg = "支付成功"
+                });
+            }
+            else if (data.OrderState == "已支付")
+            {
+                return Ok(new Result<string>()
+                {
+                    Code = 403,
+                    Msg = "重复支付的订单"
+                });
+            }
+            else if (data.OrderState == "已超时")
+            {
+                return Ok(new Result<string>()
+                {
+                    Code = 405,
+                    Msg = "无法支付，订单已超时"
+                });
+            }
+            else
+            {
+                return Ok(new Result<string>()
+                {
+                    Code = 205,
+                    Msg = "订单已完成"
+                });
+            }
+
+        }
+
+
+        [HttpOptions]
+        [Route("Pay/{id}")]
+        public IHttpActionResult OPTIONS(int id)
+        {
+            return Ok();
+        }
+
+
+        //更新当前用户的订单为已超时(tokenid，未支付，距离当前时间2小时)
+        [HttpGet]
+        [Route("SetTimeOut/{tokenid}")]
+        public IHttpActionResult SetTimeOut(string tokenid)
+        {
+            int id = new BLL.B_Tokens().GetCustomerIDByToken(tokenid);
+            var result = new BLL.B_Order().GetAll().Where(x => x.CustomerID == id && x.OrderState == "未支付" && x.CreateTime.Value.AddHours(2) <= DateTime.Now);
+
+            foreach (var item in result)
+            {
+                item.OrderState = "已超时";
+                new BLL.B_Order().Update(item.OrderID, item);
+            }
+
+            return Ok(new Result());
+        }
+
+        //获取当前用户的所有订单
+        [HttpGet]
+        [Route("GetOrder/{tokenid}")]
+        public IHttpActionResult GetOrders(string tokenid)
+        {
+            int customerid = new BLL.B_Tokens().GetCustomerIDByToken(tokenid);
+            var result = from o in new BLL.B_Order().GetAll()
+                         join od in new BLL.B_OrderDetail().GetAll() on o.OrderID equals od.OrderID
+                         where o.CustomerID == customerid
+                         group new Param_Detail { CreateTime = od.CreateTime, DetailID = od.DetailID, IMG = od.IMG, OrderID = od.OrderID, Price = od.Price, ProductName = od.ProductName, ProperID = od.ProperID, ProperName = od.ProperName, Quantity = od.Quantity, TotalMoney = od.TotalMoney, TypeName = od.TypeName } by o into g
+                         orderby g.Key.CreateTime descending
+                         select new Param_Order_Details
+                         {
+                             OrderID = g.Key.OrderID,
+                             OrderState = g.Key.OrderState,
+                             AddressInfo = g.Key.AddressInfo,
+                             CreateTime = g.Key.CreateTime,
+                             CustomerID = g.Key.CustomerID,
+                             Express = g.Key.Express,
+                             ExpressNumber = g.Key.ExpressNumber,
+                             InvoiceName = g.Key.InvoiceName,
+                             InvoiceType = g.Key.InvoiceType,
+                             OrderMoney = g.Key.OrderMoney,
+                             Postage = g.Key.Postage,
+                             ReceiveDate = g.Key.ReceiveDate,
+                             SenDate = g.Key.SenDate,
+                             Details = g.ToList()
+                         };
+
+            return Ok(new Result<List<Param_Order_Details>>
+            {
+                Data = result.ToList()
+            });
+        }
     }
 }

@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "Info";
+}
+<section class="myOrder">
+    <div class="userPanel">
+        <div class="usertip active1">
+            <div class="head">
+                <img class="myHead" src="static/home/widget/usertip/myHead_2556d7ed.jpg" alt="">
+            </div>
+            <a class="active1" href="http://www.niu.com/order/my">我的订单</a>
+            <a class="active2" href="http://www.niu.com/service/subscribe">我的体验</a>
+            <a class="active3" href="/address/list">我的地址</a>
+            <a class="active4" href="#" id="changePwd">修改密码</a>
+            <a class="active5" href="/order/zhongchou/">众筹订单</a>
+        </div>
+    </div>
+    <div class="orderGroup">
+        <div class="orderGroup-title">
+            <ul>
+                <li class="orderGroup-title-item active" id="quanbu">
+                    全部订单
+                    <span class="arrow-up"><i></i></span>
+                </li>
+                <li class="orderGroup-title-item" id="daifukuan">
+                    待付款
+                    <span class="arrow-up"><i></i></span>
+                </li>
+                <li class="orderGroup-title-item" id="wancheng">
+                    已完成
+                    <span class="arrow-up"><i></i></span>
+                </li>
+
+            </ul>
+        </div>
+        <div id="orderGroupList" class="orderGroup-list">
+
+        </div>
+        <!-- <div class="loadinggif" style="display: none;"></div> -->
+    </div>
+</section>
+<div class="niu-mask"></div>
+<div class="niu-dialog">
+    <div class="niu-dialog-head">提示</div>
+    <div class="niu-dialog-body">
+        <p></p>
+    </div>
+    <div class="niu-dialog-foot">
+        <span class="niu-btn niu-btn-middle niu-btn-red niu-dialog-confirm">确认</span>
+        <span class="niu-btn niu-btn-middle niu-btn-gray niu-dialog-cancel">取消</span>
+    </div>
+    <span style="display:none;" class="niu-dialog-close"></span>
+</div>
+
+
+@section NIUCSS{
+    @*<link rel="stylesheet" href="/Content/niu/static/common/common_3b7a84e4.css" />*@
+    @*<link rel="stylesheet" href="/Content/niu/static/home/page/n1_06eac47d.css" />*@
+    <link rel="stylesheet" href="/Content/niu/static/home/widget/my_order/my_order_9a1ac7ef.css" />
+    <link rel="stylesheet" href="/Content/niu/static/home/widget/usertip/usertip_04c7f319.css" />
+    <link rel="stylesheet" href="/Content/niu/static/home//widget/my_order/widget/orderItem_ddbaee99.css">
+    <style>
+        .niu-header {
+            margin-top: -50px;
+        }
+
+        .myOrder {
+            padding-top: 100px;
+        }
+
+        .disabled {
+            cursor: not-allowed;
+            background-color: #A4A9AD !important;
+            color: #fff;
+        }
+    </style>
+}
+
+
+@section NIUSCRIPTS{
+
+    <script>
+        let tokenid = localStorage.getItem("tokenID");
+        console.log(tokenid);
+        var orderData;
+        //初始化
+        $.get(APIURL + "api/order/SetTimeOut/" + tokenid, null, function (result) {
+            $.get(APIURL + "api/order/getorder/" + tokenid, null, function (res) {
+                console.log(res);
+                orderData = res.Data;
+                bindData()
+            })
+        })
+
+        //全部
+        $("#quanbu").click(function () {
+            bindData();
+        })
+        //待付款
+        $("#daifukuan").click(function () {
+            bindData("未支付");
+        })
+
+        //完成
+        $("#wancheng").click(() => {
+            bindData("已完成");
+        })
+        //绑定订单
+        function bindData(status) {
+            var list = "";
+            let data = orderData;
+            //筛选对应的状态
+            if (status)
+                data = orderData.filter(x => x.OrderState == status);
+            data.forEach(function (e) {
+                //console.log(e);
+                var detail = "";
+                e.Details.forEach(function (d) {
+                    detail += `
+                                            <div class="orderItem-product">
+                                            <ul>
+                                                <li class="orderItem-product-img">
+                                                    <img src="${IMGSERVER + d.IMG}" alt="">
+                                                </li>
+                                                <li class="orderItem-product-info">
+                                                    <p class="orderItem-product-info-name">${d.ProductName + " " + d.TypeName + " " + d.ProperName}</p>
+                                                </li>
+                                                <li class="orderItem-product-qty">x${d.Quantity}</li>
+                                                <li class="orderItem-product-price">${d.Price}元</li>
+                                                <li class="orderItem-product-option">
+                                       
+                                                </li>
+                                            </ul>
+                                        </div>`;
+                });
+                list += `  <div id="orderItem" class="orderItem">
+                                        <div class="orderItem-status">
+                                            <span class="littleStatus">收货人：${e.InvoiceName}</span>
+                                            <span class="littleStatus">下单时间: ${e.CreateTime.split("T")[0]}</span>
+                                            <span>订单金额: 259</span>
+                                            <a href="#" onClick="goPay(this)" data-id="${e.OrderID}" data-total="${e.OrderMoney}" class="${e.OrderState == "未支付" ? "active" : e.OrderState == "已超时" ? "disabled" : ""}">${e.OrderState == "未支付" ? "立即支付" : e.OrderState}</a>
+                                        </div>
+                                        <div class="orderItem-original">
+                                            <span>原始单号: ${e.OrderID}</span>
+                                            <span>下单时间: ${e.CreateTime.split("T")[0]}</span>
+                                            <span>拆分订单：因机车和配件分属不同物流商配送，故订单分开配送；给您造成的不便敬请谅解！</span>
+                                        </div>${detail}</div>`
+            })
+            $(".orderGroup-list").html(list);
+        }
+
+        //去支付
+        function goPay(that) {
+            if ($(that).text().trim() == "立即支付") {
+                let id = $(that).attr("data-id");
+                let total= $(that).attr("data-total");
+                let data = {
+                    id, total
+                };
+                localStorage.setItem("orderinfo", JSON.stringify(data));
+                location.href = "/pay";
+            }
+        }
+    </script>
+
+}

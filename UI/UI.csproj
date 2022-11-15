@@ -122,6 +122,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PayController.cs" />
+    <Compile Include="Controllers\PersonalController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -129,6 +130,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AlipayConfig.cs" />
+    <Compile Include="Models\AlipayCore.cs" />
+    <Compile Include="Models\AlipayNotify.cs" />
+    <Compile Include="Models\AlipaySubmit.cs" />
+    <Compile Include="Models\MD5.cs" />
     <Compile Include="Models\Param_Customer.cs" />
     <Compile Include="Models\Param_ShopCart.cs" />
     <Compile Include="Models\Result.cs" />
@@ -735,6 +741,8 @@
     <Content Include="Views\ShoppingCart\AddressBox.cshtml" />
     <Content Include="Views\ShoppingCart\EditAddress.cshtml" />
     <Content Include="Views\Pay\Index.cshtml" />
+    <Content Include="Views\Personal\Info.cshtml" />
+    <Content Include="Views\Home\UserStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
